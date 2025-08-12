@@ -1,10 +1,12 @@
 import React from "react";
 import "./App.css";
 import Sidebar from "./components/Sidebar";
-export default function App() {
+function App() {
   return (
-    <div>
+    <div className="flex">
       <Sidebar />
     </div>
   );
 }
+
+export default App;

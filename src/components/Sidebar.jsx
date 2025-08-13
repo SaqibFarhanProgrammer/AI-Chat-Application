@@ -4,14 +4,18 @@ import { FiSettings } from "react-icons/fi";
 import { IoIosMenu } from "react-icons/io";
 import { FaPlus } from "react-icons/fa6";
 
-export default function Sidebar() {
+export default function Sidebar({ massages }) {
   const [sidebar, setSidebar] = useState(false);
+
+  console.log(massages);
 
   return (
     <div
-      className={`h-screen ${
-        sidebar ? "w-64" : "w-16"
-      } bg-gradient-to-b from-black via-[#0a0a0a] to-black text-white flex flex-col border-r border-gray-900 shadow-lg transition-all duration-300`}
+      className={`h-screen ${sidebar ? "w-64" : "w-16"} ${
+        massages.lentgh === 0
+          ? " bg-gradient-to-b from-black via-[#0a0a0a] to-black"
+          : "backdrop-blur-2xl  "
+      } text-white flex flex-col border-r border-gray-900 shadow-lg transition-all duration-300`}
     >
       {/* Top Menu / Title */}
       <div className="flex items-center justify-between border-b border-gray-900 px-4 py-4">

@@ -1,8 +1,8 @@
 import React from "react";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import { ScrollArea } from "./components/ui/scroll-area";
+import { Input } from "./components/ui/input";
+import { Button } from "./components/ui/button";
+import { cn } from "./lib/utils";
 import { Send } from "lucide-react";
 
 export default function ChatArea() {

@@ -17,45 +17,48 @@ export default function ChatArea() {
   ];
 
   return (
-    <div className="flex flex-col h-screen w-full bg-black text-white">
-      {/* Header */}
-      <div className="border-b border-white/10 p-4 flex items-center justify-between">
-        <h1 className="text-2xl font-bold tracking-wide">Lexora AI</h1>
-        <span className="text-xs text-white/50">v1.0</span>
-      </div>
-
-      {/* Chat Messages */}
-      <ScrollArea className="flex-1 p-4">
-        <div className="flex flex-col gap-4">
-          {messages.map((msg) => (
-            <div
-              key={msg.id}
-              className={cn(
-                "max-w-[75%] p-3 rounded-lg text-sm leading-relaxed",
-                msg.sender === "ai"
-                  ? "bg-white/5 border border-white/10 self-start"
-                  : "bg-white text-black self-end ml-auto"
-              )}
-            >
-              {msg.text}
-            </div>
-          ))}
+    <>
+      <div class="absolute inset-0 -z-10 h-full w-full items-center px-5 py-24 [background:radial-gradient(175%_125%_at_50%_10%,#000_40%,#777_100%)]"></div>
+      <div className="flex flex-col h-screen w-full px-[]  text-white ">
+        {/* Header */}
+        <div className="border-b border-white/10 p-4 flex items-center justify-between">
+          <h1 className="text-2xl font-bold tracking-wide">Lexora AI</h1>
+          <span className="text-xs text-white/50">v1.0</span>
         </div>
-      </ScrollArea>
 
-      {/* Input Area */}
-      <div className="p-4 border-t border-white/10 flex items-center gap-2">
-        <Input
-          placeholder="Type your message..."
-          className="bg-white/5 border-white/10 text-white placeholder:text-white/50 focus-visible:ring-1 focus-visible:ring-white"
-        />
-        <Button
-          size="icon"
-          className="bg-white text-black hover:bg-white/90 transition"
-        >
-          <Send className="w-4 h-4" />
-        </Button>
+        {/* Chat Messages */}
+        <ScrollArea className="flex-1 p-4 px-30">
+          <div className="flex flex-col gap-4">
+            {messages.map((msg) => (
+              <div
+                key={msg.id}
+                className={cn(
+                  "max-w-[75%] p-3 rounded-lg text-sm leading-relaxed",
+                  msg.sender === "ai"
+                    ? "bg-white/5 border border-white/10 self-start"
+                    : "bg-white text-black self-end ml-auto"
+                )}
+              >
+                {msg.text}
+              </div>
+            ))}
+          </div>
+        </ScrollArea>
+
+        {/* Input Area */}
+        <div className="p-4 w-[55%] relative h-[15vh] m-auto flex items-center gap-2">
+          <Input
+            placeholder="Type your message..."
+            className="bg-white/5  h-[100%] border-white/10 text-white placeholder:text-white/50 focus-visible:ring-1 focus-visible:ring-white"
+          />
+          <Button
+            size="icon"
+            className="absolute bg-white right-10 text-black hover:bg-white/90 transition"
+          >
+            <Send className="w-4 h-4" />
+          </Button>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

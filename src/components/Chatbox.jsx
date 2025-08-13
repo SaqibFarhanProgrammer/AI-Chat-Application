@@ -17,14 +17,29 @@ export default function ChatBox() {
       {/* Messages */}
       <div className="flex-1 overflow-y-auto p-6 space-y-5 scrollbar-thin scrollbar-thumb-zinc-700 scrollbar-track-transparent relative z-10">
         {/* AI Message */}
-        <div className="flex items-start">
+        <div className="flex items-start flex-col  gap-3">
+          <div className="bg-zinc-900 px-5 py-3 rounded-2xl max-w-[70%] shadow-md border border-transparent hover:border-zinc-700 transition">
+            Hello! How can I help you today?
+          </div>
+          <div className="bg-zinc-900 px-5 py-3 rounded-2xl max-w-[70%] shadow-md border border-transparent hover:border-zinc-700 transition">
+            Hello! How can I help you today?
+          </div>
+          <div className="bg-zinc-900 px-5 py-3 rounded-2xl max-w-[70%] shadow-md border border-transparent hover:border-zinc-700 transition">
+            Hello! How can I help you today?
+          </div>
           <div className="bg-zinc-900 px-5 py-3 rounded-2xl max-w-[70%] shadow-md border border-transparent hover:border-zinc-700 transition">
             Hello! How can I help you today?
           </div>
         </div>
 
         {/* User Message */}
-        <div className="flex items-start justify-end">
+        <div className="flex items-end gap-3 justify-end flex-col ">
+          <div className="bg-white text-black px-5 py-3 rounded-2xl max-w-[70%] shadow-md border border-transparent hover:border-zinc-300 transition">
+            Can you explain how AI works?
+          </div>
+          <div className="bg-white text-black px-5 py-3 rounded-2xl max-w-[70%] shadow-md border border-transparent hover:border-zinc-300 transition">
+            Can you explain how AI works?
+          </div>
           <div className="bg-white text-black px-5 py-3 rounded-2xl max-w-[70%] shadow-md border border-transparent hover:border-zinc-300 transition">
             Can you explain how AI works?
           </div>

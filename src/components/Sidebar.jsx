@@ -4,7 +4,7 @@ import { FiSettings } from "react-icons/fi";
 
 export default function Sidebar() {
   return (
-    <div className="h-screen w-64 bg-gradient-to-b from-black via-[#0a0a0a] to-black text-white flex flex-col border-r border-gray-900 shadow-lg">
+    <div className="h-screen w-64  text-white flex flex-col border-r border-gray-900 shadow-lg">
       <div className="p-6 text-2xl font-bold tracking-wide border-b border-gray-900 bg-gradient-to-r from-gray-900 to-black text-white shadow-md">
         ChatBot
       </div>

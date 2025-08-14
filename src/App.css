@@ -75,3 +75,11 @@
   background: #0040ff;
   color: white;
 }
+
+.input {
+  outline: none;
+}
+
+.input:focus {
+  border: none;
+}

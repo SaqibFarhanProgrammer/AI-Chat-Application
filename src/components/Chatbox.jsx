@@ -43,17 +43,24 @@ export default function ChatArea() {
         )}
 
         {/* Input Area */}
-        <div className="p-4 w-[55%] backdrop- relative h-[15vh] m-auto flex items-center gap-2 z-10">
-          <Input
+        <div
+          className={`p-4 w-[55%]  absolute ${
+            messages.length === 0 ? "top-90 left-[28%]" : "bottom-0 left-[28%]"
+          }   h-[15vh] m-auto flex items-center gap-2 z-10`}
+        >
+          <input
             placeholder="Type your message..."
-            className="bg-white/5 input  h-[100%] backdrop-blur-[15px] border-white/10 text-white placeholder:text-white/50  outline-0 "
+            className="bg-white/5 input h-[100%]  text-[2vw ] w-[100%] p-3 rounded-lg backdrop-blur-[15px] border-white/10 text-white placeholder:text-white/50  outline-0 "
+            val
           />
-          <Button
-            size="icon"
-            className="absolute bg-white right-10 text-black hover:bg-white/90 transition"
-          >
-            <Send className="w-4 h-4" />
-          </Button>
+          <div>
+            <Button
+              size="icon"
+              className=" absolute bottom-[39px]  bg-white right-10 text-black hover:bg-white/90 transition"
+            >
+              <Send className="w-4 h-4" />
+            </Button>
+          </div>
         </div>
       </div>
     </>

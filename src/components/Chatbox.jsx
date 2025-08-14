@@ -18,8 +18,7 @@ export default function ChatArea() {
 
   return (
     <>
-      <div class="absolute inset-0 -z-10 h-full w-full items-center px-5 py-24 [background:radial-gradient(175%_125%_at_50%_10%,#000_40%,#777_100%)]"></div>
-      <div className="flex flex-col h-screen w-full px-[]  text-white ">
+      <div className="flex flex-col h-screen w-full px-[]  text-white z-10 ">
         {/* Header */}
         <div className="border-b border-white/10 p-4 flex items-center justify-between">
           <h1 className="text-2xl font-bold tracking-wide">Lexora AI</h1>
@@ -46,7 +45,7 @@ export default function ChatArea() {
         </ScrollArea>
 
         {/* Input Area */}
-        <div className="p-4 w-[55%] relative h-[15vh] m-auto flex items-center gap-2">
+        <div className="p-4 w-[55%] relative h-[15vh] m-auto flex items-center gap-2 z-10">
           <Input
             placeholder="Type your message..."
             className="bg-white/5  h-[100%] border-white/10 text-white placeholder:text-white/50 focus-visible:ring-1 focus-visible:ring-white"

@@ -17,9 +17,10 @@ export default function ChatArea() {
           <span className="text-xs text-white/50">v1.0</span>
         </div>
         {messages.length === 0 ? (
-          <div className="hero absolute top-50 left-[50%]">
-            <h4 className="text-2xl">Ask Anything With</h4>
-            <h1 className="text-6xl">lexora AI</h1>
+          <div className="hero absolute top-40 left-[25%] bg-amber-">
+            <h1 className="text-[15vw]  bg-gradient-to-b from-white to-zinc-900 bg-clip-text text-transparent">
+              Lexora AI
+            </h1>
           </div>
         ) : (
           <ScrollArea className="flex-1 p-4 px-30">
@@ -45,7 +46,7 @@ export default function ChatArea() {
         <div className="p-4 w-[55%] backdrop- relative h-[15vh] m-auto flex items-center gap-2 z-10">
           <Input
             placeholder="Type your message..."
-            className="bg-white/5 input  h-[100%] backdrop-blur-2xl border-white/10 text-white placeholder:text-white/50  outline-0 "
+            className="bg-white/5 input  h-[100%] backdrop-blur-[15px] border-white/10 text-white placeholder:text-white/50  outline-0 "
           />
           <Button
             size="icon"

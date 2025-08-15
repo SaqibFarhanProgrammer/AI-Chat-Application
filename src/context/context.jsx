@@ -19,6 +19,7 @@ export function AIProvider({ children }) {
 
       const result = await model.generateContent(promptText);
       const text = result.response.text();
+      console.log(text);
 
       setAiResponse(text);
       setPreviousPrompts((prev) => [...prev, promptText]);

@@ -1,37 +1,28 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { ScrollArea } from "./ui/scroll-area";
 import { Button } from "./ui/button";
 import { Send } from "lucide-react";
 import { context } from "../context/context";
 import { cn } from "../lib/utils";
 
-export default function ChatArea({ getmessageslentghfromchild }) {
-  const { prompt, setPrompt } = useContext(context);
+export default function ChatArea() {
+  const { prompt, setPrompt, aiResponse, getResponse } = useContext(context);
   const [messages, setMessages] = useState([]);
 
   function handleSend() {
-    if (!prompt.trim()) return;
-
-    // user message add
     const userMessage = { id: Date.now(), sender: "user", text: prompt };
 
     setMessages((prev) => [...prev, userMessage]);
     setPrompt("");
 
-    // 2 sec delay → AI reply
-    setTimeout(() => {
-      const aiMessage = {
-        id: Date.now() + 1,
-        sender: "ai",
-        text: "This is a dummy AI reply 🤖",
-      };
-      setMessages((prev) => [...prev, aiMessage]);
-    }, 2000);
+    const aiMessage = {
+      id: Date.now() + 1,
+      sender: "ai",
+      text: aiResponse,
+    };
+    setMessages((prev) => [...prev, aiMessage]);
+    getResponse(prompt);
   }
-
-  useEffect(() => {
-    getmessageslentghfromchild(messages);
-  }, []);
 
   return (
     <div className="flex justify-between items-center flex-col h-screen w-[90vw] text-white z-10 ">
@@ -48,7 +39,7 @@ export default function ChatArea({ getmessageslentghfromchild }) {
           </h1>
         </div>
       ) : (
-        <div className="chatarea h-[80vh] mb-20 mr-5 overflow-y-scroll overflow-x-hidden bg-gradient-to-b from-transparent to-black ">
+        <div className="chatarea h-[80vh] mb-20 mr-5 overflow-y-scroll overflow-x-hidden  ">
           <ScrollArea className="flex-1 p-4 px-30  ml-20  w-[80vw]   ">
             <div className="flex flex-col gap-4 ">
               {messages.map((msg) => (

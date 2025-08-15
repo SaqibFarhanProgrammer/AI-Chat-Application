@@ -1,4 +1,7 @@
-/* Full screen dark background */
+@font-face {
+  src: url(./assets/fonts/Wake\ Me\ Up.jfif);
+  font-family: "a";
+}
 
 /* Chat container */
 .chat-window {
@@ -11,6 +14,21 @@
   flex-direction: column;
   overflow: hidden;
   backdrop-filter: blur(10px);
+}
+
+.text {
+  font-family: "a";
+  letter-spacing: -11px;
+}
+.text2 {
+  font-family: "a";
+}
+
+.icon {
+  filter: invert(1);
+}
+.sidebar {
+  transition: 0.2s linear;
 }
 
 /* Messages section */

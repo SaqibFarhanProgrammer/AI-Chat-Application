@@ -10,15 +10,15 @@ export default function ChatArea() {
 
   return (
     <>
-      <div className="flex flex-col h-screen w-full px-[]  text-white z-10 ">
+      <div className="flex flex-col h-screen w-[90vw] px-[]  text-white z-10 ">
         {/* Header */}
         <div className="border-b border-white/10 p-4 flex items-center justify-between">
           <h1 className="text-2xl font-bold tracking-wide">Lexora AI</h1>
           <span className="text-xs text-white/50">v1.0</span>
         </div>
         {messages.length === 0 ? (
-          <div className="hero absolute top-40 left-[25%] bg-amber-">
-            <h1 className="text-[15vw]  bg-gradient-to-b from-white to-zinc-900 bg-clip-text text-transparent">
+          <div className="hero absolute top-[10vw] left-[23%] bg-amber-">
+            <h1 className="text  text-[17vw]  bg-gradient-to-b from-white to-zinc-900 bg-clip-text text-transparent">
               Lexora AI
             </h1>
           </div>
@@ -45,7 +45,9 @@ export default function ChatArea() {
         {/* Input Area */}
         <div
           className={`p-4 w-[55%]  absolute ${
-            messages.length === 0 ? "top-90 left-[28%]" : "bottom-0 left-[28%]"
+            messages.length === 0
+              ? "top-[25vw] left-[28%]"
+              : "bottom-0 left-[28%]"
           }   h-[15vh] m-auto flex items-center gap-2 z-10`}
         >
           <input

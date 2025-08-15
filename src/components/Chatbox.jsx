@@ -7,7 +7,6 @@ import { Send } from "lucide-react";
 import { context } from "../context/context";
 
 export default function ChatArea() {
-  const messages = [];
   const {
     prompt,
     setPrompt,
@@ -21,8 +20,7 @@ export default function ChatArea() {
     setPreviousPrompts,
     getResponse,
   } = useContext(context);
-
-  console.log(prompt);
+  const messages = [];
 
   return (
     <>
@@ -67,6 +65,7 @@ export default function ChatArea() {
           }   h-[15vh] m-auto flex items-center gap-2 z-10`}
         >
           <input
+            value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
             placeholder="Type your message..."
             className="bg-white/5 input h-[100%]  text-[2vw ] w-[100%] p-3 rounded-lg backdrop-blur-[15px] border-white/10 text-white placeholder:text-white/50  outline-0 "
@@ -77,7 +76,7 @@ export default function ChatArea() {
               size="icon"
               className=" absolute bottom-[39px]  bg-white right-10 text-black hover:bg-white/90 transition"
             >
-              <Send className="w-4 h-4" />
+              <Send onClick={handlesend} className="w-4 h-4" />
             </Button>
           </div>
         </div>

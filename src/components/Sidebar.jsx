@@ -77,7 +77,7 @@ export default function Sidebar() {
       </div>
 
       {expand ? (
-        <button className="m-4 px-4 py-2 rounded-lg bg-gradient-to-r from-gray-200 to-white text-black font-medium shadow-md hover:shadow-lg hover:scale-[1.02] transition">
+        <button className="m-4 px-4 text-[12px] py-2 rounded-lg bg-gradient-to-r from-gray-200 to-white text-black font-medium shadow-md hover:shadow-lg hover:scale-[1.02] transition">
           + New Chat
         </button>
       ) : (
@@ -93,7 +93,7 @@ export default function Sidebar() {
               (chat, i) => (
                 <div
                   key={i}
-                  className="p-3 rounded-lg bg-grayborder border-transparent hover:border-white hover:bg-zinc-800 cursor-pointer transition"
+                  className="p-3 text-[12px] rounded-lg bg-grayborder border-transparent hover:border-white hover:bg-zinc-800 cursor-pointer transition"
                 >
                   {chat}
                 </div>

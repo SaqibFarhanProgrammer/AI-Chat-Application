@@ -114,3 +114,7 @@
     opacity: 0.3;
   }
 }
+
+.chatarea::-webkit-scrollbar {
+  overflow: hidden;
+}

@@ -1,12 +1,28 @@
-import React from "react";
+import React, { useContext } from "react";
 import { ScrollArea } from "./ui/scroll-area";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { cn } from "../lib/utils";
 import { Send } from "lucide-react";
+import { context } from "../context/context";
 
 export default function ChatArea() {
   const messages = [];
+  const {
+    prompt,
+    setPrompt,
+    loading,
+    setLoading,
+    aiResponse,
+    setAiResponse,
+    send,
+    setSend,
+    previousPrompts,
+    setPreviousPrompts,
+    getResponse,
+  } = useContext(context);
+
+  console.log(prompt);
 
   return (
     <>
@@ -51,6 +67,7 @@ export default function ChatArea() {
           }   h-[15vh] m-auto flex items-center gap-2 z-10`}
         >
           <input
+            onChange={(e) => setPrompt(e.target.value)}
             placeholder="Type your message..."
             className="bg-white/5 input h-[100%]  text-[2vw ] w-[100%] p-3 rounded-lg backdrop-blur-[15px] border-white/10 text-white placeholder:text-white/50  outline-0 "
             val

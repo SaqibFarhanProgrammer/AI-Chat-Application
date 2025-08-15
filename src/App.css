@@ -101,3 +101,16 @@
 .input:focus {
   border: none;
 }
+
+.image {
+  animation: opasity 1s linear;
+}
+
+@keyframes opasity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.3;
+  }
+}

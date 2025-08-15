@@ -44,7 +44,7 @@ export default function ChatArea() {
           </h1>
         </div>
       ) : (
-        <div className="h-[80vh] overflow-y-scroll overflow-x-hidden">
+        <div className="chatarea h-[80vh] overflow-y-scroll overflow-x-hidden bg-gradient-to-b from-transparent to-black ">
           <ScrollArea className="flex-1 p-4 px-30    m-auto w-[90vw]   ">
             <div className="flex flex-col gap-4 ">
               {messages.map((msg) => (
@@ -74,7 +74,7 @@ export default function ChatArea() {
           messages.length === 0
             ? "top-[25vw] left-[23vw]"
             : "bottom-0 left-[28%]"
-        } h-[15vh] m-auto flex items-center gap-2 z-10`}
+        } h-[15vh] m-auto flex items-center gap-2 z-10 `}
       >
         <input
           value={prompt}

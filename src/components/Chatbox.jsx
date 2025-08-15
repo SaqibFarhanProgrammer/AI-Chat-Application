@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ScrollArea } from "./ui/scroll-area";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
@@ -20,7 +20,13 @@ export default function ChatArea() {
     setPreviousPrompts,
     getResponse,
   } = useContext(context);
-  const messages = [];
+
+  const [messages, setmessages] = useState([]);
+
+  function handlesend() {
+    setmessages((prev) => [...prev, { text: prompt }]);
+    setPrompt("");
+  }
 
   return (
     <>
@@ -76,7 +82,9 @@ export default function ChatArea() {
               size="icon"
               className=" absolute bottom-[39px]  bg-white right-10 text-black hover:bg-white/90 transition"
             >
-              <Send onClick={handlesend} className="w-4 h-4" />
+              <p onClick={handlesend}>
+                <Send className="w-4 h-4" />
+              </p>
             </Button>
           </div>
         </div>

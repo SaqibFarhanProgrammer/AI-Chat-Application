@@ -6,7 +6,7 @@ import background from "./assets/images/New Project (1).jpg";
 
 function App() {
   return (
-    <div className="flex relative h-screen w-full App overflow-hidden bg-gradient-to-b from-transparent via-transparent  to-black">
+    <div className="flex relative h-screen w-full App  bg-gradient-to-b from-transparent via-transparent  to-black">
       <img
         src={background}
         className="absolute image h-[100%] w-[100%] top-0   mix-blend-screen saturate-0 opacity-30 z-[-5]"

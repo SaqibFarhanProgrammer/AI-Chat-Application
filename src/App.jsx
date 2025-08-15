@@ -2,14 +2,14 @@ import React from "react";
 import "./App.css";
 import Sidebar from "./components/Sidebar";
 import ChatBox from "./components/Chatbox";
-import background from "./assets/a (1).jpeg";
+import background from "./assets/images/New Project (1).jpg";
 
 function App() {
   return (
-    <div className="flex relative h-screen w-full App overflow-hidden">
+    <div className="flex relative h-screen w-full App overflow-hidden bg-gradient-to-b from-transparent via-transparent  to-black">
       <img
         src={background}
-        className="absolute image h-[100%] w-[100%] top-50  saturate- opacity-30 z-[-5]"
+        className="absolute image h-[100%] w-[100%] top-0   mix-blend-screen saturate-0 opacity-30 z-[-5]"
         alt=""
       />
       <Sidebar />

@@ -17,7 +17,7 @@ export default function ChatArea() {
           <span className="text-xs text-white/50">v1.0</span>
         </div>
         {messages.length === 0 ? (
-          <div className="hero absolute top-[10vw] left-[23%] bg-amber-">
+          <div className="hero absolute top-[10vw] left-[17%] bg-amber-">
             <h1 className="text  text-[17vw]  bg-gradient-to-b from-white to-zinc-900 bg-clip-text text-transparent">
               Lexora AI
             </h1>
@@ -46,7 +46,7 @@ export default function ChatArea() {
         <div
           className={`p-4 w-[55%]  absolute ${
             messages.length === 0
-              ? "top-[25vw] left-[28%]"
+              ? "top-[25vw] left-[23vw]"
               : "bottom-0 left-[28%]"
           }   h-[15vh] m-auto flex items-center gap-2 z-10`}
         >

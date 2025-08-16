@@ -8,23 +8,15 @@ import { cn } from "../lib/utils";
 export default function ChatArea() {
   const { prompt, setPrompt, aiResponse, getResponse } = useContext(context);
   const [messages, setMessages] = useState([]);
-  const [usermessage, setusermessage] = useState([]);
 
   function handleSend() {
-    setMessages((prev) => [...prev, { sender: "user", text: prompt }]);
-
+    setMessages((prev) => [...prev, prompt]);
     setPrompt("");
 
-    const aiMessage = {
-      id: Date.now() + 1,
-      sender: "ai",
-      text: aiResponse,
-    };
-    setusermessage((prev) => [...prev, prompt]);
     getResponse(prompt);
   }
 
-  console.log(usermessage);
+  console.log(messages);
 
   return (
     <div className="flex justify-between items-center flex-col h-screen w-[90vw] text-white z-10 ">
@@ -41,27 +33,27 @@ export default function ChatArea() {
           </h1>
         </div>
       ) : (
-        <div className="chatarea flex items-center justify-center mb-20 mr-5 overflow-y-scroll overflow-x-hidden bg-zinc-600 h-screen w-full ">
-          <ScrollArea className="flex flex-col gap-4 p-4 w-full">
-            {messages.map((msg, index) => (
-              <div
-                key={index}
-                className={`flex ${
-                  msg.sender === "user" ? "justify-end" : "justify-start"
-                }`}
-              >
-                <div
-                  className={`max-w-[70%] rounded-2xl px-4 py-2 shadow-md ${
-                    msg.sender === "user"
-                      ? "bg-blue-600 text-white"
-                      : "bg-zinc-800 text-white"
-                  }`}
-                >
-                  {msg.text}
+        <div className="chatarea p-20 flex items-center justify-center mb-20 mr-5 overflow-y-scroll overflow-x-hidden bg-zinc-600 h-screen w-full ">
+          <div className="chatarea gap-5 flex-col flex h-[100%] w-[100%] bg-blue-950 ">
+            <div className="flex flex-col">
+              {messages.map((text) => (
+                <div className="user flex flex-col max-w-[70%] bg-white text-black px-4 py-2 rounded-2xl shadow-md">
+                  <p className="text-xs text-gray-500 mb-1">You</p>
+                  <h4 className="text-base">
+                    <p key={text}>{text}</p>
+                  </h4>
                 </div>
+              ))}
+            </div>
+
+            {/* AI */}
+            <div className="flex justify-start">
+              <div className="ai max-w-[70%] bg-white/10 backdrop-blur-md border border-white/10 text-white px-4 py-2 rounded-2xl shadow-md">
+                <p className="text-xs text-gray-400 mb-1">AI</p>
+                <h4 className="text-base">{aiResponse}</h4>
               </div>
-            ))}
-          </ScrollArea>
+            </div>
+          </div>
         </div>
       )}
 

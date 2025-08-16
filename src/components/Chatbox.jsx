@@ -19,7 +19,7 @@ export default function ChatArea() {
       sender: "ai",
       text: aiResponse,
     };
-    setusermessage((prev) => [...prev, pro]);
+    setusermessage((prev) => [...prev, prompt]);
     getResponse(prompt);
   }
 
@@ -40,16 +40,14 @@ export default function ChatArea() {
           </h1>
         </div>
       ) : (
-        <div className="chatarea h-[80vh] mb-20 mr-5 overflow-y-scroll overflow-x-hidden  ">
-          <ScrollArea className="bg-red-500 flex justify-between p-4 px-30  ml-20  w-[80vw]   ">
-            <div className="duser">
-              {usermessage.map((text, index) => {
-                <p className="bg-amber-600" key={index}>
-                  {index.text}
-                </p>;
-              })}
+        <div className="chatarea  mb-20 mr-5 overflow-y-scroll overflow-x-hidden bg-zinc-600 h-screen w-full ">
+          <ScrollArea className="flex  jus  p-4 px-30  ml-20    ">
+            <div className="duser h-[100%] bg-amber-800">
+              {usermessage.map((text, index) => (
+                <p key={index}>{text}</p>
+              ))}
             </div>
-            <div className="flex flex-col gap-4 ">
+            <div className="flex flex-col gap-4  bg-amber-400">
               <p>{aiResponse}</p>
             </div>
           </ScrollArea>

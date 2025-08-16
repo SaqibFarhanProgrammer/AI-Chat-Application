@@ -18,11 +18,11 @@ export function AIProvider({ children }) {
       const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
       const result = await model.generateContent(promptText);
-      const text = result.response.text();
-      console.log(text);
+      console.log(result.response.text);
 
-      setAiResponse(text);
+      setAiResponse(result.response.text);
       setPreviousPrompts((prev) => [...prev, promptText]);
+      return result.response.text;
     } catch (error) {
       console.error("AI Error:", error);
     } finally {

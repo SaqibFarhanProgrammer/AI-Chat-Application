@@ -8,11 +8,10 @@ import { cn } from "../lib/utils";
 export default function ChatArea() {
   const { prompt, setPrompt, aiResponse, getResponse } = useContext(context);
   const [messages, setMessages] = useState([]);
+  const [usermessage, setusermessage] = useState([]);
 
   function handleSend() {
-    const userMessage = { id: Date.now(), sender: "user", text: prompt };
-
-    setMessages((prev) => [...prev, userMessage]);
+    setMessages((prev) => [...prev, prompt]);
     setPrompt("");
 
     const aiMessage = {
@@ -20,9 +19,11 @@ export default function ChatArea() {
       sender: "ai",
       text: aiResponse,
     };
-    setMessages((prev) => [...prev, aiMessage]);
+    setusermessage((prev) => [...prev, pro]);
     getResponse(prompt);
   }
+
+  console.log(usermessage);
 
   return (
     <div className="flex justify-between items-center flex-col h-screen w-[90vw] text-white z-10 ">
@@ -40,24 +41,16 @@ export default function ChatArea() {
         </div>
       ) : (
         <div className="chatarea h-[80vh] mb-20 mr-5 overflow-y-scroll overflow-x-hidden  ">
-          <ScrollArea className="flex-1 p-4 px-30  ml-20  w-[80vw]   ">
+          <ScrollArea className="bg-red-500 flex justify-between p-4 px-30  ml-20  w-[80vw]   ">
+            <div className="duser">
+              {usermessage.map((text, index) => {
+                <p className="bg-amber-600" key={index}>
+                  {index.text}
+                </p>;
+              })}
+            </div>
             <div className="flex flex-col gap-4 ">
-              {messages.map((msg) => (
-                <div
-                  key={msg.id}
-                  className={cn(
-                    "max-w-[75%] p-3 rounded-lg text-sm leading-relaxed",
-                    msg.sender === "user"
-                      ? "bg-white text-black self-end"
-                      : "bg-white/5 border border-white/10 self-start"
-                  )}
-                >
-                  <p className="text-xs mb-1 opacity-60">
-                    {msg.sender === "user" ? "You" : "AI"}
-                  </p>
-                  {msg.text}
-                </div>
-              ))}
+              <p>{aiResponse}</p>
             </div>
           </ScrollArea>
         </div>

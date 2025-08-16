@@ -11,7 +11,8 @@ export default function ChatArea() {
   const [usermessage, setusermessage] = useState([]);
 
   function handleSend() {
-    setMessages((prev) => [...prev, prompt]);
+    setMessages((prev) => [...prev, { sender: "user", text: prompt }]);
+
     setPrompt("");
 
     const aiMessage = {
@@ -40,16 +41,26 @@ export default function ChatArea() {
           </h1>
         </div>
       ) : (
-        <div className="chatarea  mb-20 mr-5 overflow-y-scroll overflow-x-hidden bg-zinc-600 h-screen w-full ">
-          <ScrollArea className="flex  jus  p-4 px-30  ml-20    ">
-            <div className="duser h-[100%] bg-amber-800">
-              {usermessage.map((text, index) => (
-                <p key={index}>{text}</p>
-              ))}
-            </div>
-            <div className="flex flex-col gap-4  bg-amber-400">
-              <p>{aiResponse}</p>
-            </div>
+        <div className="chatarea flex items-center justify-center mb-20 mr-5 overflow-y-scroll overflow-x-hidden bg-zinc-600 h-screen w-full ">
+          <ScrollArea className="flex flex-col gap-4 p-4 w-full">
+            {messages.map((msg, index) => (
+              <div
+                key={index}
+                className={`flex ${
+                  msg.sender === "user" ? "justify-end" : "justify-start"
+                }`}
+              >
+                <div
+                  className={`max-w-[70%] rounded-2xl px-4 py-2 shadow-md ${
+                    msg.sender === "user"
+                      ? "bg-blue-600 text-white"
+                      : "bg-zinc-800 text-white"
+                  }`}
+                >
+                  {msg.text}
+                </div>
+              </div>
+            ))}
           </ScrollArea>
         </div>
       )}

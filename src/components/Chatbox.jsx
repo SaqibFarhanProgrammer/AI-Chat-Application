@@ -42,18 +42,12 @@ export default function ChatArea() {
                     : "backdrop-blur-md bg-white/10 text-white self-start"
                 }`}
               >
-                {
-                  loading ? 
-                  <>
-                  <p className="text-xs opacity-70 mb-1">
+                <p className="text-xs opacity-70 mb-1">
                   {data.role === "user" ? "You" : "AI"}
                 </p>
                 <p className="text-sm">{data.text}</p>
               </div>
-                  </>
-              : <p>loading</p>
             ))}
-                }
           </div>
         </div>
       )}

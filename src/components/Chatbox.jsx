@@ -5,7 +5,7 @@ import { Send } from "lucide-react";
 import { context } from "../context/context";
 
 export default function ChatArea() {
-  const { prompt, setPrompt, aiResponse, getResponse } = useContext(context);
+  const { prompt, setPrompt, getResponse } = useContext(context);
   const [messages, setMessages] = useState([]);
 
   async function handleSend() {

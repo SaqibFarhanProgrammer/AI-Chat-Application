@@ -58,7 +58,6 @@ export default function ChatArea() {
               <p className="text-xs opacity-70 mb-1">
                 {data.role === "user" ? "You" : "AI"}
               </p>
-
               <p className="text-sm">{data.text}</p>
             </div>
           ))}

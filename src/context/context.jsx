@@ -1,5 +1,6 @@
 import { createContext, useState } from "react";
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import gsap from "gsap";
 
 export const context = createContext();
 
@@ -18,11 +19,12 @@ export function AIProvider({ children }) {
       const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
       const result = await model.generateContent(promptText);
-      console.log(result.response.text);
 
       setAiResponse(result.response.text);
       setPreviousPrompts((prev) => [...prev, promptText]);
-      return result.response.text();
+      const newresult = result.response.text();
+
+      return newresult;
     } catch (error) {
       console.error("AI Error:", error);
     } finally {

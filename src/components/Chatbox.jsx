@@ -11,10 +11,12 @@ export default function ChatArea() {
 
   async function handleSend() {
     if (!prompt) return;
-    setMessages((prev) => [...prev, { role: "user", text: prompt }]);
-    const aires = await getResponse(prompt);
-    setMessages((prev) => [...prev, { role: "ai", text: aires }]);
     setPrompt("");
+    setMessages((prev) => [...prev, { role: "user", text: prompt }]);
+    const aires = await getResponse(
+      `"Please provide the most accurate, deeply researched, and insightful answer possible. Use a natural, human-like tone that’s professional yet conversational—as if explaining to a smart friend. Avoid buzzwords, filler, or press-release style language. Be clear, direct, and precise with simple language and well-structured sentences. Base your response on thorough web research for the best my question is ${prompt}`
+    );
+    setMessages((prev) => [...prev, { role: "ai", text: aires }]);
   }
 
   return (

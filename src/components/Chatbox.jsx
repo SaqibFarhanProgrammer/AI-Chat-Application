@@ -5,7 +5,8 @@ import { Send } from "lucide-react";
 import { context } from "../context/context";
 
 export default function ChatArea() {
-  const { prompt, setPrompt, getResponse } = useContext(context);
+  const { prompt, setPrompt, getResponse, loading, setLoading } =
+    useContext(context);
   const [messages, setMessages] = useState([]);
 
   async function handleSend() {
@@ -18,7 +19,6 @@ export default function ChatArea() {
 
   return (
     <div className="flex justify-between items-center flex-col h-screen w-[90vw] text-white z-10 ">
-      {/* Header */}
       <div className="flex justify-between border-b border-white/10 p-4 w-[90vw]">
         <h1 className="text-2xl font-bold tracking-wide">Neura AI</h1>
         <span className="text-xs text-white/50">v1.0</span>
@@ -31,22 +31,33 @@ export default function ChatArea() {
           </h1>
         </div>
       ) : (
-        <div className="chatarea p-20 flex items-center justify-center mb-20 mr-5 overflow-y-scroll overflow-x-hidden bg-zinc-600 h-screen w-full ">
-          <div className="chatarea gap-5 flex-col flex h-[100%] w-[100%] bg-blue-950 ">
+        <div className="chatarea p-20 flex items-center justify-center mb-20 mr-5 overflow-y-scroll overflow-x-hidden h-screen w-full ">
+          <div className="chatarea gap-5 flex-col flex h-[100%] w-[100%] ">
             {messages.map((data, i) => (
               <div
                 key={i}
-                className={data.role === "user" ? "bg-amber-800" : "bg-red-800"}
+                className={`max-w-[70%] my-2 px-4 py-2 rounded-2xl shadow-md ${
+                  data.role === "user"
+                    ? "bg-white text-black self-end"
+                    : "backdrop-blur-md bg-white/10 text-white self-start"
+                }`}
               >
-                <p>{data.role === "user" ? "you" : "ai"}</p>
-                <p>{data.text}</p>
+                {
+                  loading ? 
+                  <>
+                  <p className="text-xs opacity-70 mb-1">
+                  {data.role === "user" ? "You" : "AI"}
+                </p>
+                <p className="text-sm">{data.text}</p>
               </div>
+                  </>
+              : <p>loading</p>
             ))}
+                }
           </div>
         </div>
       )}
 
-      {/* Input Area */}
       <div
         className={`p-4 w-[55%] fixed ${
           messages.length === 0
@@ -55,6 +66,11 @@ export default function ChatArea() {
         } h-[15vh] m-auto flex items-center gap-2 z-10 `}
       >
         <input
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              handleSend();
+            }
+          }}
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
           placeholder="Type your message..."

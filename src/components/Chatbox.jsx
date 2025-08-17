@@ -4,7 +4,7 @@ import { Button } from "./ui/button";
 import { Send } from "lucide-react";
 import { context } from "../context/context";
 
-export default function ChatArea({ getmessageslentghfromchild }) {
+export default function ChatArea() {
   const { prompt, setPrompt, getResponse, loading, setLoading } =
     useContext(context);
   const [messages, setMessages] = useState([]);
@@ -16,10 +16,6 @@ export default function ChatArea({ getmessageslentghfromchild }) {
     setMessages((prev) => [...prev, { role: "ai", text: aires }]);
     setPrompt("");
   }
-
-  useEffect(() => {
-    getmessageslentghfromchild(messages);
-  }, [messages]);
 
   return (
     <div className="flex justify-between items-center flex-col h-screen w-[90vw] text-white z-10 ">

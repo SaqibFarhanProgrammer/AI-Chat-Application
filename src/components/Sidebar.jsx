@@ -60,7 +60,7 @@ export default function Sidebar() {
           <div className="flex gap-35 p-3 px-5 items-center text-2xl font-bold tracking-wide border-b border-gray-900 text-white">
             <p className="text2">AI</p>
             <img
-              className="icon inset-0 h-[5vh] pr-7 cursor-pointer"
+              className="icon inset-0 h-[4vh] pr-7 cursor-pointer"
               alt=""
               src={naviconclose}
               onClick={() => setexpand(false)}
@@ -69,7 +69,7 @@ export default function Sidebar() {
         ) : (
           <img
             onClick={() => setexpand(true)}
-            className="icon inset-0 h-[5vh] pr-7 cursor-pointer m-4"
+            className="icon inset-0 h-[3vh] pr-7 cursor-pointer m-4"
             src={naviconopen}
             alt=""
           />
@@ -77,12 +77,12 @@ export default function Sidebar() {
       </div>
 
       {expand ? (
-        <button className="m-4 px-4 text-[12px] py-2 rounded-lg bg-gradient-to-r from-gray-200 to-white text-black font-medium shadow-md hover:shadow-lg hover:scale-[1.02] transition">
+        <button className="m-4 px-4 text-[12px] py-2 rounded-[5px] bg-gradient-to-r from-gray-200 to-white text-black font-medium shadow-md hover:shadow-lg hover:scale-[1.02] transition">
           + New Chat
         </button>
       ) : (
-        <button className="m-[.7vw] relative h-[5.5vh] w-[3vw] rounded-lg bg-gradient-to-r from-gray-200 to-white text-black font-medium shadow-md hover:shadow-lg hover:scale-[1.02] transition">
-          <p className="text-4xl bottom-1 left-2 absolute">+</p>
+        <button className="m-[.7vw] flex  justify-center items-center relative h-[5vh] w-[2.5vw] rounded-[6px] bg-gradient-to-r from-gray-200 to-white text-black font-medium shadow-md hover:shadow-lg hover:scale-[1.02] transition">
+          <p className="text-2xl pb-1 ">+</p>
         </button>
       )}
 

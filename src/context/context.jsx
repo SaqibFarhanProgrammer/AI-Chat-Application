@@ -1,6 +1,5 @@
 import { createContext, useState } from "react";
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import gsap from "gsap";
 
 export const context = createContext();
 
@@ -15,18 +14,24 @@ export function AIProvider({ children }) {
     try {
       setLoading(true);
 
+      // init Gemini client
       const genAI = new GoogleGenerativeAI(import.meta.env.VITE_API_KEY);
       const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
+      // generate response
       const result = await model.generateContent(promptText);
 
-      setAiResponse(result.response.text);
-      setPreviousPrompts((prev) => [...prev, promptText]);
-      const newresult = result.response.text();
+      // NOTE: SDK returns result.response.text() as a function, not string directly
+      const newResult = result.response.text();
 
-      return newresult;
+      // update states
+      setAiResponse(newResult);
+      setPreviousPrompts((prev) => [...prev, promptText]);
+
+      return newResult.replace("** * -", " ");
     } catch (error) {
       console.error("AI Error:", error);
+      return "Sorry, something went wrong.";
     } finally {
       setLoading(false);
     }

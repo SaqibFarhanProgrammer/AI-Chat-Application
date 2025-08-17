@@ -1,10 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ScrollArea } from "./ui/scroll-area";
 import { Button } from "./ui/button";
 import { Send } from "lucide-react";
 import { context } from "../context/context";
 
-export default function ChatArea() {
+export default function ChatArea({ getmessageslentghfromchild }) {
   const { prompt, setPrompt, getResponse, loading, setLoading } =
     useContext(context);
   const [messages, setMessages] = useState([]);
@@ -16,6 +16,10 @@ export default function ChatArea() {
     setMessages((prev) => [...prev, { role: "ai", text: aires }]);
     setPrompt("");
   }
+
+  useEffect(() => {
+    getmessageslentghfromchild(messages);
+  }, [messages]);
 
   return (
     <div className="flex justify-between items-center flex-col h-screen w-[90vw] text-white z-10 ">
@@ -31,8 +35,8 @@ export default function ChatArea() {
           </h1>
         </div>
       ) : (
-        <div className="chatarea p-20 flex items-center justify-center mb-20 mr-5 overflow-y-scroll overflow-x-hidden h-screen w-full ">
-          <div className="chatarea gap-5 flex-col flex h-[100%] w-[100%] ">
+        <div className="chatarea p-20  flex items-center justify-center mb-24 mr-5 overflow-y-scroll overflow-x-hidden h-[100vh] w-full ">
+          <div className=" gap-5 flex-col flex h-[100%] z-[-1]   w-[100%] ">
             {messages.map((data, i) => (
               <div
                 key={i}

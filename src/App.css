@@ -118,3 +118,13 @@
 .chatarea::-webkit-scrollbar {
   overflow: hidden;
 }
+
+.chatarea {
+  background-image: linear-gradient(
+    to bottom,
+    transparent,
+    transparent,
+    transparent,
+    black
+  );
+}

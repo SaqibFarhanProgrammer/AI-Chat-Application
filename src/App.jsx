@@ -5,6 +5,9 @@ import ChatBox from "./components/Chatbox";
 import background from "./assets/images/New Project (1).jpg";
 
 function App() {
+  function getmessageslentghfromchild([lentgh]) {
+    console.log(lentgh);
+  }
   return (
     <div className="flex relative h-screen w-full App  bg-gradient-to-b from-transparent via-transparent  to-black">
       <img
@@ -13,7 +16,7 @@ function App() {
         alt=""
       />
       <Sidebar />
-      <ChatBox />
+      <ChatBox getmessageslentghfromchild={getmessageslentghfromchild} />
     </div>
   );
 }

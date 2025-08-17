@@ -22,7 +22,7 @@ export function AIProvider({ children }) {
 
       setAiResponse(result.response.text);
       setPreviousPrompts((prev) => [...prev, promptText]);
-      return result.response.text;
+      return result.response.text();
     } catch (error) {
       console.error("AI Error:", error);
     } finally {

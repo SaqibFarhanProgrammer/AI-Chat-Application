@@ -3,20 +3,23 @@ import { ScrollArea } from "./ui/scroll-area";
 import { Button } from "./ui/button";
 import { Send } from "lucide-react";
 import { context } from "../context/context";
-import { cn } from "../lib/utils";
 
 export default function ChatArea() {
   const { prompt, setPrompt, aiResponse, getResponse } = useContext(context);
   const [messages, setMessages] = useState([]);
 
-  function handleSend() {
-    setMessages((prev) => [...prev, prompt]);
+  async function handleSend() {
+    if (!prompt) return;
+
+    setMessages((prev) => [...prev, { role: "user", text: prompt }]);
+
+    const userPrompt = prompt;
     setPrompt("");
 
-    getResponse(prompt);
-  }
+    const aires = await getResponse(userPrompt);
 
-  console.log(messages);
+    setMessages((prev) => [...prev, { role: "ai", text: aires }]);
+  }
 
   return (
     <div className="flex justify-between items-center flex-col h-screen w-[90vw] text-white z-10 ">
@@ -35,24 +38,15 @@ export default function ChatArea() {
       ) : (
         <div className="chatarea p-20 flex items-center justify-center mb-20 mr-5 overflow-y-scroll overflow-x-hidden bg-zinc-600 h-screen w-full ">
           <div className="chatarea gap-5 flex-col flex h-[100%] w-[100%] bg-blue-950 ">
-            <div className="flex flex-col">
-              {messages.map((text) => (
-                <div className="user flex flex-col max-w-[70%] bg-white text-black px-4 py-2 rounded-2xl shadow-md">
-                  <p className="text-xs text-gray-500 mb-1">You</p>
-                  <h4 className="text-base">
-                    <p key={text}>{text}</p>
-                  </h4>
-                </div>
-              ))}
-            </div>
-
-            {/* AI */}
-            <div className="flex justify-start">
-              <div className="ai max-w-[70%] bg-white/10 backdrop-blur-md border border-white/10 text-white px-4 py-2 rounded-2xl shadow-md">
-                <p className="text-xs text-gray-400 mb-1">AI</p>
-                <h4 className="text-base">{aiResponse}</h4>
+            {messages.map((data, i) => (
+              <div
+                key={i}
+                className={data.role === "user" ? "bg-amber-800" : "bg-red-800"}
+              >
+                <p>{data.role === "user" ? "you" : "ai"}</p>
+                <p>{data.text}</p>
               </div>
-            </div>
+            ))}
           </div>
         </div>
       )}

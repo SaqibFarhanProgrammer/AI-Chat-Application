@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { ScrollArea } from "./ui/scroll-area";
 import { Button } from "./ui/button";
 import { Send } from "lucide-react";
@@ -7,17 +7,26 @@ import { context } from "../context/context";
 export default function ChatArea() {
   const { prompt, setPrompt, getResponse, loading, setLoading } =
     useContext(context);
+  const [ai, setai] = useState("");
   const [messages, setMessages] = useState([]);
+  const endRef = useRef(null);
 
   async function handleSend() {
     if (!prompt) return;
     setPrompt("");
     setMessages((prev) => [...prev, { role: "user", text: prompt }]);
     const aires = await getResponse(
-      `"Please provide the most accurate, deeply researched, and insightful answer possible. Use a natural, human-like tone that’s professional yet conversational—as if explaining to a smart friend. Avoid buzzwords, filler, or press-release style language. Be clear, direct, and precise with simple language and well-structured sentences. Base your response on thorough web research for the best my question is ${prompt}`
+      `"Please provide the most accurate, deeply researched, and insightful answer possible. Use a natural, human-like tone that’s professional yet conversational—as if explaining to a smart friend. Avoid buzzwords, filler, or press-release style language. Be clear, direct, and precise with simple language and well-structured sentences. Base your response on thorough web research for the best    ${prompt}`
     );
+    setai(aires);
+    console.log(aires);
+
     setMessages((prev) => [...prev, { role: "ai", text: aires }]);
   }
+
+  useEffect(() => {
+    endRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
   return (
     <div className="flex justify-between items-center flex-col h-screen w-[90vw] text-white z-10 ">
@@ -33,24 +42,26 @@ export default function ChatArea() {
           </h1>
         </div>
       ) : (
-        <div className="chatarea p-20  flex items-center justify-center mb-24 mr-5 overflow-y-scroll overflow-x-hidden h-[100vh] w-full ">
-          <div className=" gap-5 flex-col flex h-[100%] z-[-1]   w-[100%] ">
-            {messages.map((data, i) => (
-              <div
-                key={i}
-                className={`max-w-[70%] my-2 px-4 py-2 rounded-2xl shadow-md ${
-                  data.role === "user"
-                    ? "bg-white text-black self-end"
-                    : "backdrop-blur-md bg-white/10 text-white self-start"
-                }`}
-              >
-                <p className="text-xs opacity-70 mb-1">
-                  {data.role === "user" ? "You" : "AI"}
-                </p>
-                <p className="text-sm">{data.text}</p>
-              </div>
-            ))}
-          </div>
+        <div
+          ref={endRef}
+          className="chatarea p-20 flex flex-col gap-5 mb-24 mr-5 overflow-y-auto overflow-x-hidden h-[100vh] w-full"
+        >
+          {messages.map((data, i) => (
+            <div
+              key={i}
+              className={`max-w-[70%] my-2 px-4 py-2 rounded-md shadow-md ${
+                data.role === "user"
+                  ? "bg-white text-black self-end"
+                  : "text-white self-start"
+              }`}
+            >
+              <p className="text-xs opacity-70 mb-1">
+                {data.role === "user" ? "You" : "AI"}
+              </p>
+
+              <p className="text-sm">{data.text}</p>
+            </div>
+          ))}
         </div>
       )}
 

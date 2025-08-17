@@ -59,7 +59,7 @@ export default function ChatArea({ getmessageslentghfromchild }) {
       <div
         className={`p-4 w-[55%] fixed ${
           messages.length === 0
-            ? "top-[25vw] left-[23vw]"
+            ? "top-[26vw] left-[23vw]"
             : "bottom-0 left-[28%]"
         } h-[15vh] m-auto flex items-center gap-2 z-10 `}
       >

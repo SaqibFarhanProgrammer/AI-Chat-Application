@@ -10,15 +10,10 @@ export default function ChatArea() {
 
   async function handleSend() {
     if (!prompt) return;
-
     setMessages((prev) => [...prev, { role: "user", text: prompt }]);
-
-    const userPrompt = prompt;
-    setPrompt("");
-
-    const aires = await getResponse(userPrompt);
-
+    const aires = await getResponse(prompt);
     setMessages((prev) => [...prev, { role: "ai", text: aires }]);
+    setPrompt("");
   }
 
   return (

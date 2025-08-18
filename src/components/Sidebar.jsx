@@ -5,12 +5,14 @@ import { gsap } from "gsap";
 import naviconclose from "../assets/cions/icons8-arrow-50-2.png";
 import naviconopen from "../assets/cions/icons8-arrow-50-4.png";
 
-export default function Sidebar() {
+export default function Sidebar({ getchat }) {
   const [expand, setexpand] = useState(false);
   const sidebarRef = useRef(null);
   const fadeContentRef = useRef(null);
+  const [newchat, setnewchat] = useState(true);
 
   useEffect(() => {
+    getchat(newchat);
     const sidebar = sidebarRef.current;
     const items = fadeContentRef.current?.children || [];
     if (expand) {

@@ -5,15 +5,7 @@ import { Send } from "lucide-react";
 import { context } from "../context/context";
 
 export default function ChatArea() {
-  const {
-    prompt,
-    setPrompt,
-    getResponse,
-    newchat,
-    setnewchat,
-    loading,
-    setLoading,
-  } = useContext(context);
+  const { prompt, setPrompt, getResponse } = useContext(context);
   const [messages, setMessages] = useState([]);
   const endRef = useRef(null);
 

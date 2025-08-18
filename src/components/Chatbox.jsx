@@ -4,10 +4,18 @@ import { Button } from "./ui/button";
 import { Send } from "lucide-react";
 import { context } from "../context/context";
 
-export default function ChatArea() {
+export default function ChatArea({ getchat }) {
   const { prompt, setPrompt, getResponse } = useContext(context);
   const [messages, setMessages] = useState([]);
   const endRef = useRef(null);
+
+  function reset() {
+    setMessages([]);
+  }
+
+  useEffect(() => {
+    getchat(reset);
+  }, []);
 
   async function handleSend() {
     setPrompt("");

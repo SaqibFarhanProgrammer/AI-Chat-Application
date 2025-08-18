@@ -5,14 +5,16 @@ import { gsap } from "gsap";
 import naviconclose from "../assets/cions/icons8-arrow-50-2.png";
 import naviconopen from "../assets/cions/icons8-arrow-50-4.png";
 
-export default function Sidebar({ getchat }) {
+export default function Sidebar({ func }) {
   const [expand, setexpand] = useState(false);
   const sidebarRef = useRef(null);
   const fadeContentRef = useRef(null);
   const [newchat, setnewchat] = useState(true);
+  function resetchat() {
+    func();
+  }
 
   useEffect(() => {
-    getchat(newchat);
     const sidebar = sidebarRef.current;
     const items = fadeContentRef.current?.children || [];
     if (expand) {
@@ -79,7 +81,7 @@ export default function Sidebar({ getchat }) {
 
       {expand ? (
         <button
-          onClick={() => setnewchat(false)}
+          onClick={() => resetchat}
           className="m-4 px-4 text-[12px] py-2 rounded-[5px] bg-gradient-to-r from-gray-200 to-white text-black font-medium shadow-md hover:shadow-lg hover:scale-[1.02] transition"
         >
           + New Chat

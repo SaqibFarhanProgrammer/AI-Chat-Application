@@ -5,27 +5,24 @@ import { Send } from "lucide-react";
 import { context } from "../context/context";
 
 export default function ChatArea() {
-  const { prompt, setPrompt, getResponse, loading, setLoading } =
-    useContext(context);
-  const [ai, setai] = useState("");
+  const {
+    prompt,
+    setPrompt,
+    getResponse,
+    newchat,
+    setnewchat,
+    loading,
+    setLoading,
+  } = useContext(context);
   const [messages, setMessages] = useState([]);
   const endRef = useRef(null);
 
   async function handleSend() {
-    if (!prompt) return;
     setPrompt("");
     setMessages((prev) => [...prev, { role: "user", text: prompt }]);
-    const aires = await getResponse(
-      `"Please provide the most accurate, deeply researched, and insightful answer possible. Use a natural, human-like tone that’s professional yet conversational—as if explaining to a smart friend. Avoid buzzwords, filler, or press-release style language. Be clear, direct, and precise with simple language and well-structured sentences. Base your response on thorough web research for the best    ${prompt}`
-    );
-    setai(aires);
-
+    const aires = await getResponse(`  ${prompt}`);
     setMessages((prev) => [...prev, { role: "ai", text: aires }]);
   }
-
-  useEffect(() => {
-    endRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
 
   return (
     <div className="flex justify-between items-center flex-col h-screen w-[90vw] text-white z-10 ">

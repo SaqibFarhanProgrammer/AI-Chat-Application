@@ -1,5 +1,5 @@
 // Sidebar.jsx
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import { FiSettings } from "react-icons/fi";
 import { gsap } from "gsap";
 import naviconclose from "../assets/cions/icons8-arrow-50-2.png";
@@ -13,7 +13,6 @@ export default function Sidebar() {
   useEffect(() => {
     const sidebar = sidebarRef.current;
     const items = fadeContentRef.current?.children || [];
-
     if (expand) {
       const tl = gsap.timeline();
       tl.to(sidebar, {
@@ -77,12 +76,17 @@ export default function Sidebar() {
       </div>
 
       {expand ? (
-        <button className="m-4 px-4 text-[12px] py-2 rounded-[5px] bg-gradient-to-r from-gray-200 to-white text-black font-medium shadow-md hover:shadow-lg hover:scale-[1.02] transition">
+        <button
+          onClick={() => setnewchat(false)}
+          className="m-4 px-4 text-[12px] py-2 rounded-[5px] bg-gradient-to-r from-gray-200 to-white text-black font-medium shadow-md hover:shadow-lg hover:scale-[1.02] transition"
+        >
           + New Chat
         </button>
       ) : (
         <button className="m-[.7vw] flex  justify-center items-center relative h-[5vh] w-[2.5vw] rounded-[6px] bg-gradient-to-r from-gray-200 to-white text-black font-medium shadow-md hover:shadow-lg hover:scale-[1.02] transition">
-          <p className="text-2xl pb-1 ">+</p>
+          <p onClick={() => setnewchat(false)} className="text-2xl pb-1 ">
+            +
+          </p>
         </button>
       )}
 

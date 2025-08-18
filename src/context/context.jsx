@@ -9,6 +9,7 @@ export function AIProvider({ children }) {
   const [aiResponse, setAiResponse] = useState("");
   const [previousPrompts, setPreviousPrompts] = useState([]);
   const [send, setSend] = useState(false);
+  const [newchat, setnewchat] = useState(true);
 
   async function getResponse(promptText) {
     try {
@@ -31,7 +32,7 @@ export function AIProvider({ children }) {
         newresponse += splitrespone[i].split("*").join(" ");
       }
 
-      return newresponse;
+      return newresponse ? newresponse : "loading";
     } catch (error) {
       console.error("AI Error:", error);
       return "Sorry, something went wrong.";
@@ -52,6 +53,8 @@ export function AIProvider({ children }) {
     previousPrompts,
     setPreviousPrompts,
     getResponse,
+    newchat,
+    setnewchat,
   };
 
   return <context.Provider value={value}>{children}</context.Provider>;

@@ -14,21 +14,24 @@ export function AIProvider({ children }) {
     try {
       setLoading(true);
 
-      // init Gemini client
       const genAI = new GoogleGenerativeAI(import.meta.env.VITE_API_KEY);
       const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
-      // generate response
       const result = await model.generateContent(promptText);
-
-      // NOTE: SDK returns result.response.text() as a function, not string directly
       const newResult = result.response.text();
 
-      // update states
       setAiResponse(newResult);
+
       setPreviousPrompts((prev) => [...prev, promptText]);
 
-      return newResult.replace("** * -", " ");
+      let newresponse = "";
+      const splitrespone = newResult.split("**");
+
+      for (let i = 0; i < splitrespone.length; i++) {
+        newresponse += splitrespone[i].split("*").join(" ");
+      }
+
+      return newresponse;
     } catch (error) {
       console.error("AI Error:", error);
       return "Sorry, something went wrong.";

@@ -1,6 +1,7 @@
 import { createContext, useState } from "react";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const context = createContext();
 
 export function AIProvider({ children }) {

@@ -1,18 +1,24 @@
 // Sidebar.jsx
-import React, { useState, useEffect, useRef, useContext } from "react";
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  useContext,
+  lazy,
+  Suspense,
+} from "react";
 import { FiSettings } from "react-icons/fi";
 import { gsap } from "gsap";
 import naviconclose from "../assets/cions/icons8-arrow-50-2.png";
 import naviconopen from "../assets/cions/icons8-arrow-50-4.png";
 
-export default function Sidebar({ func }) {
+export default function Sidebar({ prevprompts }) {
   const [expand, setexpand] = useState(false);
   const sidebarRef = useRef(null);
   const fadeContentRef = useRef(null);
-  const [newchat, setnewchat] = useState(true);
-  function resetchat() {
-    func();
-  }
+  console.log(prevprompts);
+
+  alert("sidebar render");
 
   useEffect(() => {
     const sidebar = sidebarRef.current;
@@ -80,33 +86,26 @@ export default function Sidebar({ func }) {
       </div>
 
       {expand ? (
-        <button
-          onClick={() => resetchat}
-          className="m-4 px-4 text-[12px] py-2 rounded-[5px] bg-gradient-to-r from-gray-200 to-white text-black font-medium shadow-md hover:shadow-lg hover:scale-[1.02] transition"
-        >
+        <button className="m-4 px-4 text-[12px] py-2 rounded-[5px] bg-gradient-to-r from-gray-200 to-white text-black font-medium shadow-md hover:shadow-lg hover:scale-[1.02] transition">
           + New Chat
         </button>
       ) : (
         <button className="m-[.7vw] flex  justify-center items-center relative h-[5vh] w-[2.5vw] rounded-[6px] bg-gradient-to-r from-gray-200 to-white text-black font-medium shadow-md hover:shadow-lg hover:scale-[1.02] transition">
-          <p onClick={() => setnewchat(false)} className="text-2xl pb-1 ">
-            +
-          </p>
+          <p className="text-2xl pb-1 ">+</p>
         </button>
       )}
 
       <div ref={fadeContentRef} className="flex flex-col flex-1">
         {expand ? (
           <div className="flex-1 overflow-y-auto px-4 space-y-2 scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-transparent">
-            {["Previous Chat 1", "Previous Chat 2", "Previous Chat 3"].map(
-              (chat, i) => (
-                <div
-                  key={i}
-                  className="p-3 text-[12px] rounded-lg bg-grayborder border-transparent hover:border-white hover:bg-zinc-800 cursor-pointer transition"
-                >
-                  {chat}
-                </div>
-              )
-            )}
+            {prevprompts.map((chat, i) => (
+              <div
+                key={i}
+                className="p-3 text-[12px] rounded-lg bg-grayborder border-transparent hover:border-white hover:bg-zinc-800 cursor-pointer transition"
+              >
+                {chat}
+              </div>
+            ))}
           </div>
         ) : null}
       </div>

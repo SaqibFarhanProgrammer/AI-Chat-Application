@@ -1,28 +1,33 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useCallback, useState } from "react";
 import { ScrollArea } from "./ui/scroll-area";
 import { Button } from "./ui/button";
 import { Send } from "lucide-react";
 import { context } from "../context/context";
 
-export default function ChatArea({ getchat }) {
+export default function  ChatArea({ getchat }) {
   const { prompt, setPrompt, getResponse } = useContext(context);
   const [messages, setMessages] = useState([]);
   const endRef = useRef(null);
+  const [previousPrompts, setpreviousPrompts] = useState([]);
 
-  function reset() {
-    setMessages([]);
-  }
+  // function reset() {
+  //   setMessages([]);
+  // }
 
-  useEffect(() => {
-    getchat(reset);
-  }, []);
+   async function handleSend useCallback ((
 
-  async function handleSend() {
-    setPrompt("");
-    setMessages((prev) => [...prev, { role: "user", text: prompt }]);
-    const aires = await getResponse(`  ${prompt}`);
-    setMessages((prev) => [...prev, { role: "ai", text: aires }]);
-  }
+   ) =>{
+
+     
+     setpreviousPrompts((prev) => [...prev, prompt]);
+       getchat(previousPrompts);
+       setPrompt("");
+       setMessages((prev) => [...prev, { role: "user", text: prompt }]);
+       const aires = await getResponse(`  ${prompt}`);
+       setMessages((prev) => [...prev, { role: "ai", text: aires }]);
+      },
+      []
+    )
 
   return (
     <div className="flex justify-between items-center flex-col h-screen w-[90vw] text-white z-10 ">

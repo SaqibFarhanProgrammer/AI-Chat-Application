@@ -4,7 +4,7 @@ import { Button } from "./ui/button";
 import { Send } from "lucide-react";
 import { context } from "../context/context";
 
-export default function  ChatArea({ getchat }) {
+export default function ChatArea({ getchat }) {
   const { prompt, setPrompt, getResponse } = useContext(context);
   const [messages, setMessages] = useState([]);
   const endRef = useRef(null);
@@ -14,20 +14,20 @@ export default function  ChatArea({ getchat }) {
   //   setMessages([]);
   // }
 
-   async function handleSend useCallback ((
+  async function handleSend useCallback((
 
-   ) =>{
+  ) => {
 
-     
-     setpreviousPrompts((prev) => [...prev, prompt]);
-       getchat(previousPrompts);
-       setPrompt("");
-       setMessages((prev) => [...prev, { role: "user", text: prompt }]);
-       const aires = await getResponse(`  ${prompt}`);
-       setMessages((prev) => [...prev, { role: "ai", text: aires }]);
-      },
-      []
-    )
+
+    setpreviousPrompts((prev) => [...prev, prompt]);
+    getchat(previousPrompts);
+    setPrompt("");
+    setMessages((prev) => [...prev, { role: "user", text: prompt }]);
+    const aires = await getResponse(`  ${prompt}`);
+    setMessages((prev) => [...prev, { role: "ai", text: aires }]);
+  },
+    []
+  )
 
   return (
     <div className="flex justify-between items-center flex-col h-screen w-[90vw] text-white z-10 ">
@@ -50,11 +50,10 @@ export default function  ChatArea({ getchat }) {
           {messages.map((data, i) => (
             <div
               key={i}
-              className={`max-w-[70%] my-2 px-4 py-2 rounded-md shadow-md ${
-                data.role === "user"
+              className={`max-w-[70%] my-2 px-4 py-2 rounded-md shadow-md ${data.role === "user"
                   ? "bg-white text-black self-end"
                   : "text-white self-start"
-              }`}
+                }`}
             >
               <p className="text-xs opacity-70 mb-1">
                 {data.role === "user" ? "You" : "AI"}
@@ -66,11 +65,10 @@ export default function  ChatArea({ getchat }) {
       )}
 
       <div
-        className={`p-4 w-[55%] fixed ${
-          messages.length === 0
+        className={`p-4 w-[55%] fixed ${messages.length === 0
             ? "top-[26vw] left-[23vw]"
             : "bottom-0 left-[28%]"
-        } h-[15vh] m-auto flex items-center gap-2 z-10 `}
+          } h-[15vh] m-auto flex items-center gap-2 z-10 `}
       >
         <input
           onKeyDown={(e) => {

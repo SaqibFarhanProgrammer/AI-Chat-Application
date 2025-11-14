@@ -3,9 +3,6 @@ import React, {
   useState,
   useEffect,
   useRef,
-  useContext,
-  lazy,
-  Suspense,
 } from "react";
 import { FiSettings } from "react-icons/fi";
 import { gsap } from "gsap";
@@ -16,9 +13,7 @@ export default function Sidebar({ prevprompts }) {
   const [expand, setexpand] = useState(false);
   const sidebarRef = useRef(null);
   const fadeContentRef = useRef(null);
-  console.log(prevprompts);
 
-  alert("sidebar render");
 
   useEffect(() => {
     const sidebar = sidebarRef.current;

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useCallback, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { ScrollArea } from "./ui/scroll-area";
 import { Button } from "./ui/button";
 import { Send } from "lucide-react";
@@ -10,24 +10,21 @@ export default function ChatArea({ getchat }) {
   const endRef = useRef(null);
   const [previousPrompts, setpreviousPrompts] = useState([]);
 
-  // function reset() {
-  //   setMessages([]);
-  // }
 
-  async function handleSend useCallback((
+async function handleSend(prompttext) {
+  
+  
+  setpreviousPrompts((prev) => [...prev, prompttext]);
+  getchat(previousPrompts);
+  setPrompt("");
+  console.log(prompttext);
+  
+  setMessages((prev) => [...prev, { role: "user", text: prompttext }]);
+  const aires = await getResponse(prompttext);
+  setMessages((prev) => [...prev, { role: "ai", text: aires }]);
+}
+  
 
-  ) => {
-
-
-    setpreviousPrompts((prev) => [...prev, prompt]);
-    getchat(previousPrompts);
-    setPrompt("");
-    setMessages((prev) => [...prev, { role: "user", text: prompt }]);
-    const aires = await getResponse(`  ${prompt}`);
-    setMessages((prev) => [...prev, { role: "ai", text: aires }]);
-  },
-    []
-  )
 
   return (
     <div className="flex justify-between items-center flex-col h-screen w-[90vw] text-white z-10 ">
@@ -73,17 +70,19 @@ export default function ChatArea({ getchat }) {
         <input
           onKeyDown={(e) => {
             if (e.key === "Enter") {
-              handleSend();
+            handleSend(prompt)
             }
           }}
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
           placeholder="Type your message..."
-          className="bg-white/5 h-[100%] text-[1.2vw] w-[100%] p-3 rounded-lg backdrop-blur-[15px] border-white/10 text-white placeholder:text-white/50 outline-0"
+          className="bg-white/5 h-[100%] text-[1.2vw] w-[100%] p-3 rounded-lg backdrop-blur-[15px] border-white/10 text-white  placeholder:text-white/50 outline-0"
         />
         <Button
           size="icon"
-          onClick={handleSend}
+          onClick={()=>{
+            handleSend(prompt)
+          }}
           className="absolute bottom-[39px] bg-white right-10 text-black hover:bg-white/90 transition"
         >
           <Send className="w-4 h-4" />

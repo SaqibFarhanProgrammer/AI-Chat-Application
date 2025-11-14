@@ -18,7 +18,8 @@ export function AIProvider({ children }) {
 
       const genAI = new GoogleGenerativeAI(import.meta.env.VITE_API_KEY);
       const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
-
+      console.log(promptText);
+      
       const result = await model.generateContent(promptText);
       const newResult = result.response.text();
 

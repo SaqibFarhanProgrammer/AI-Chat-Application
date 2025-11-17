@@ -1,5 +1,4 @@
 import React, { useContext, useRef, useState } from "react";
-import { ScrollArea } from "./ui/scroll-area";
 import { Button } from "./ui/button";
 import { Send } from "lucide-react";
 import "../App.css";

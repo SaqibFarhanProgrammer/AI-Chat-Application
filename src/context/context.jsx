@@ -18,7 +18,6 @@ export function AIProvider({ children }) {
 
       const genAI = new GoogleGenerativeAI(import.meta.env.VITE_API_KEY);
       const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
-      console.log(promptText);
       
       const result = await model.generateContent(promptText);
       const newResult = result.response.text();
@@ -34,10 +33,17 @@ export function AIProvider({ children }) {
         newresponse += splitrespone[i].split("*").join(" ");
       }
 
-      return newresponse ? newresponse : "loading";
+const res2 = newresponse.split(/\((.*?)\)/g).join("<i><i>");
+
+      
+
+
+      
+
+      return  res2   ? res2 : "loading";
     } catch (error) {
       console.error("AI Error:", error);
-      return "Sorry, something went wrong.";
+      return "The model is overloaded. Please try again later..";
     } finally {
       setLoading(false);
     }

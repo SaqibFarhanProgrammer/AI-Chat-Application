@@ -3,6 +3,11 @@
   font-family: "a";
 }
 
+
+body{
+  overflow: hidden;
+}
+
 /* Chat container */
 .chat-window {
   width: 100vw;

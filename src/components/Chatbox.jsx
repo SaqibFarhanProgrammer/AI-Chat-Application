@@ -3,7 +3,7 @@ import { Button } from "./ui/button";
 import { Send } from "lucide-react";
 import "../App.css";
 import { context } from "../context/context";
-import ChatBoxes from "./chatboxes";
+import Chatboxes from "./Chatboxes";
 
 export default function ChatArea() {
   const { prompt, setPrompt, getResponse, setPreviousPrompts } =
@@ -24,7 +24,10 @@ export default function ChatArea() {
   }
 
   return (
-    <div className="flex justify-between items-center flex-col h-screen w-[90vw] text-white z-10 ">
+    <div className="flex 
+        max-[420px]:overflow-hidden
+    
+    justify-between items-center flex-col h-screen w-[90vw] text-white z-10 ">
       <div className="w-full max-[420px]:ml-10 px-4 py-3   border-white/10 flex items-center justify-between">
         <h1 className="text-lg font-semibold tracking-wide max-[420px]:text-base">
           Neura AI
@@ -90,7 +93,11 @@ export default function ChatArea() {
       <div
         className={`
     p-4 w-[55%] fixed 
-    ${messages.length === 0 ? "top-[26vw] left-[23vw]" : "bottom-0 left-[25%]"}
+    ${
+      messages.length === 0
+        ? "top-[26vw] left-[23vw] max-[420px]:bottom-100 "
+        : "bottom-0 left-[25%]"
+    }
     h-[13vh] m-auto flex items-center gap-2 z-10
 
     max-[1090px]:top-[30vw]
@@ -134,7 +141,7 @@ export default function ChatArea() {
         </Button>
       </div>
 
-      {messages.length === 0 ? <ChatBoxes /> : null}
+      {messages.length === 0 ? <Chatboxes /> : null}
     </div>
   );
 }

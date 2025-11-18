@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import chatquestions from "../../data";
 import { context } from "../context/context";
 
-function ChatBoxes() {
+function Chatboxes() {
   const { handlechatquestionssend } = useContext(context);
   const [chatsQuestion, setChatsQuestion] = useState([]);
 
@@ -20,44 +20,42 @@ function ChatBoxes() {
   }, []);
 
   return (
-    <div className="
-      w-full sm:w-[80%] mx-auto 
-      sm:h-40 flex flex-col sm:flex-row 
-      items-center sm:justify-between 
-      gap-4 px-4 py-2
-      max-[420px]:px-3
-      max-[420px]:gap-3
-      max-[420px]:h-110
-      max-[420px]:mt-4
-      max-[420px]:ml-4
-            max-[420px]:flex-wrap
-
-    ">
+    <div
+      className="
+        w-full
+        flex flex-col gap-3
+        px-4 py-3
+        max-w-[900px] 
+        max-[420px]:ml-10
+        max-[420px]:h-[40vh]
+        max-[420px]:mb-20
+          
+        max-[420px]:overflow-hidden
+        ml-34
+        sm:flex-row sm:justify-between 
+      "
+    >
       {chatsQuestion.map((chat, i) => (
         <div
           key={i}
           className="
-            flex-1 flex flex-col items-end 
-            h-[10vh] sm:h-[10vh]
-            max-[420px]:h-[10vh]
+            flex flex-col justify-between
             bg-black text-white 
-            p-3 sm:p- rounded-xl 
-            border border-white/10 
-            hover:bg-zinc-800 
-            transition-all duration-300 
+            p-4 rounded-xl border border-white/10
+            transition-all duration-300 hover:bg-zinc-800
             cursor-pointer
-            max-[420px]:w-[70vw]
-            max-[420px]:p-4
+            h-[12vh]
+            w-full
+            sm:flex-1 sm:h-[14vh]
           "
         >
-          <h1 className="text-sm  sm:text-lg leading-tight">{chat}</h1>
+          <h1 className="text-sm sm:text-base leading-tight">{chat}</h1>
 
           <button
             onClick={() => handlechatquestionssend(chat)}
             className="
-              text-sm sm:text-lg 
-              px-3 sm:px-4 py-1 
-              cursor-pointer mt-2
+              text-xs sm:text-sm 
+              px-3 py-1 mt-2 self-start
             "
           >
             Add
@@ -68,4 +66,4 @@ function ChatBoxes() {
   );
 }
 
-export default ChatBoxes;
+export default Chatboxes;

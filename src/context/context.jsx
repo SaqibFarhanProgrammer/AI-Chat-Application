@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -59,6 +59,17 @@ export function AIProvider({ children }) {
     }
   }
 
+  function handlechatquestionssend (question){
+    setPrompt(question)
+  }
+
+
+  useEffect(() => {
+    localStorage.setItem("recentChats" ,previousPrompts)
+  }, [previousPrompts])
+  
+
+
   const value = {
     prompt,
     setPrompt,
@@ -73,6 +84,7 @@ export function AIProvider({ children }) {
     getResponse,
     newchat,
     setnewchat,
+    handlechatquestionssend,
   };
 
   return <context.Provider value={value}>{children}</context.Provider>;

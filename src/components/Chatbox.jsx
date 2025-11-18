@@ -1,20 +1,18 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useState } from "react";
 import { Button } from "./ui/button";
 import { Send } from "lucide-react";
 import "../App.css";
 import { context } from "../context/context";
 import ChatBoxes from "./chatboxes";
 
-export default function ChatArea({ getchat }) {
-  const { prompt, setPrompt, getResponse } = useContext(context);
+export default function ChatArea( ) {
+  const { prompt, setPrompt, getResponse,setPreviousPrompts  } = useContext(context);
   const [messages, setMessages] = useState([]);
-  const [previousPrompts, setpreviousPrompts] = useState([]);
   const [loading, setloading] = useState(false);
-  const scrollref = useRef(null);
 
   async function handleSend(prompttext) {
-    setpreviousPrompts((prev) => [...prev, prompttext]);
-    getchat(previousPrompts);
+    setPreviousPrompts((prev) => [...prev, prompttext]);
+    
     setPrompt("");
 
     setMessages((prev) => [...prev, { role: "user", text: prompttext }]);
@@ -23,12 +21,9 @@ export default function ChatArea({ getchat }) {
     setloading(true);
     setMessages((prev) => [...prev, { role: "ai", text: aires }]);
   }
+    
 
-  useEffect(() => {
-    if (scrollref.current) {
-      scrollref.current.scrollTop = scrollref.current.scrollHeight;
-    }
-  }, []);
+
 
   return (
     <div className="flex justify-between items-center flex-col h-screen w-[90vw] text-white z-10 ">
@@ -45,13 +40,13 @@ export default function ChatArea({ getchat }) {
         </div>
       ) : (
         <div
-          ref={scrollref}
-          className="chatarea p-20 flex flex-col gap-5 mb-24 mr-5 overflow-y-auto overflow-x-hidden h-[100vh] w-full"
+          
+          className="chatarea  p-20 flex flex-col gap-5  mr-5 overflow-y-auto overflow-x-hidden  h-[100vh] w-full"
         >
           {messages.map((data, i) => (
             <div
               key={i}
-              className={`max-w-[70%] my-2 px-4 py-2 rounded-md shadow-md ${
+              className={`max-w-[70%]  my-2 px-4 py-2 rounded-md shadow-md ${
                 data.role === "user"
                   ? "bg-white text-black self-end"
                   : "text-white self-start"
@@ -77,7 +72,8 @@ export default function ChatArea({ getchat }) {
       )}
 
       <div
-        className={`p-4 w-[55%] fixed ${
+
+        className={`p-4 w-[55%]  fixed ${
           messages.length === 0
             ? "top-[26vw] left-[23vw]"
             : "bottom-0 left-[28%]"
@@ -104,7 +100,12 @@ export default function ChatArea({ getchat }) {
           <Send className="w-4 h-4" />
         </Button>
       </div>
-      <ChatBoxes/>
+      {
+        messages.length === 0 ? 
+        <ChatBoxes/>
+        :
+        null
+      }
     </div>
   );
 }

@@ -1,6 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import chatquestions from "../../data";
+import { context } from "../context/context";
+
+
+
+
 function ChatBoxes() {
+const {handlechatquestionssend} = useContext(context)
+
+
+
   const [chatsQuestion, setchatsQuestion] = useState([]);
   function getRandomChatQuestions() {
     const randomSet = [];
@@ -14,6 +23,9 @@ function ChatBoxes() {
     getRandomChatQuestions();
   }, []);
 
+
+
+
   return (
     <div className="w-[80%] h-40 flex items-center justify-between gap-4 px-6">
       {chatsQuestion.map((chat, i) => (
@@ -23,7 +35,9 @@ function ChatBoxes() {
                      hover:bg-zinc-800  transition-all duration-300 cursor-pointer"
         >
           <h1 className="text-lg leading-tight">{chat}</h1>
-          <button className="text-lg px-4 p-1 cursor-pointer      ">Add</button>
+          <button onClick={()=>{
+            handlechatquestionssend(chat)
+          }} className="text-lg px-4 p-1 cursor-pointer      ">Add</button>
         </div>
       ))}
     </div>

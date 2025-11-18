@@ -120,14 +120,17 @@
 }
 
 .chatarea {
-  background-image: linear-gradient(
-    to bottom,
+  mask-image: linear-gradient(
+    to top,
     transparent,
     transparent,
-    transparent,
-    transparent,
-    transparent,
-    transparent,
+    black,
+    black,
+    black,
+    black,
+    black,
+    black,
+    black,
     black
   );
 }

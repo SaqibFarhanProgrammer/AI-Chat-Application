@@ -1,19 +1,21 @@
 // Sidebar.jsx
-import React, {
-  useState,
-  useEffect,
-  useRef,
-} from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { FiSettings } from "react-icons/fi";
 import { gsap } from "gsap";
 import naviconclose from "../assets/cions/icons8-arrow-50-2.png";
 import naviconopen from "../assets/cions/icons8-arrow-50-4.png";
 
-export default function Sidebar({ prevprompts }) {
+export default function Sidebar( ) {
   const [expand, setexpand] = useState(false);
   const sidebarRef = useRef(null);
   const fadeContentRef = useRef(null);
+  const [prevprompts, setprevprompts] = useState([]);
+  function getprevprompts() {
+    setprevprompts((prev) => [...prev, localStorage.getItem("recentChats")]);
+  }
 
+
+  
 
   useEffect(() => {
     const sidebar = sidebarRef.current;
@@ -51,6 +53,8 @@ export default function Sidebar({ prevprompts }) {
       });
     }
   }, [expand]);
+
+
 
   return (
     <div

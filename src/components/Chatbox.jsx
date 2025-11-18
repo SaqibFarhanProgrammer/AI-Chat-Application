@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { Button } from "./ui/button";
 import { Send } from "lucide-react";
 import "../App.css";
@@ -7,9 +7,9 @@ import { context } from "../context/context";
 export default function ChatArea({ getchat }) {
   const { prompt, setPrompt, getResponse } = useContext(context);
   const [messages, setMessages] = useState([]);
-  const endRef = useRef(null);
   const [previousPrompts, setpreviousPrompts] = useState([]);
   const [loading, setloading] = useState(false);
+  const scrollref = useRef(null);
 
   async function handleSend(prompttext) {
     setpreviousPrompts((prev) => [...prev, prompttext]);
@@ -22,6 +22,12 @@ export default function ChatArea({ getchat }) {
     setloading(true);
     setMessages((prev) => [...prev, { role: "ai", text: aires }]);
   }
+
+  useEffect(() => {
+    if (scrollref.current) {
+      scrollref.current.scrollTop = scrollref.current.scrollHeight;
+    }
+  }, []);
 
   return (
     <div className="flex justify-between items-center flex-col h-screen w-[90vw] text-white z-10 ">
@@ -38,7 +44,7 @@ export default function ChatArea({ getchat }) {
         </div>
       ) : (
         <div
-          ref={endRef}
+          ref={scrollref}
           className="chatarea p-20 flex flex-col gap-5 mb-24 mr-5 overflow-y-auto overflow-x-hidden h-[100vh] w-full"
         >
           {messages.map((data, i) => (

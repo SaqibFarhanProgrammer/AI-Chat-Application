@@ -24,6 +24,7 @@ export function AIProvider({ children }) {
     // basic formatting
     t = t.replace(/\*\*(.*?)\*\*/g, "<b>$1</b>");
     t = t.replace(/\*(.*?)\*/g, "<i>$1</i>");
+    t = t.replace(/\*/g, "");
 
     // line breaks
     t = t.replace(/\n/g, "<br/>");

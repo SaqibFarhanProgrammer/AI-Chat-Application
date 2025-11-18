@@ -3,6 +3,7 @@ import { Button } from "./ui/button";
 import { Send } from "lucide-react";
 import "../App.css";
 import { context } from "../context/context";
+import ChatBoxes from "./chatboxes";
 
 export default function ChatArea({ getchat }) {
   const { prompt, setPrompt, getResponse } = useContext(context);
@@ -103,6 +104,7 @@ export default function ChatArea({ getchat }) {
           <Send className="w-4 h-4" />
         </Button>
       </div>
+      <ChatBoxes/>
     </div>
   );
 }

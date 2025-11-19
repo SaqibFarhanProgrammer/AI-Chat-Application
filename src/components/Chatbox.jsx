@@ -12,9 +12,9 @@ export default function ChatArea() {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const chatEndRef = useRef(null); // Ref to scroll to
+  const chatEndRef = useRef(null);
 
-  // Auto-scroll whenever messages change
+  // Auto-scroll to the last message whenever messages change
   useEffect(() => {
     if (chatEndRef.current) {
       chatEndRef.current.scrollIntoView({ behavior: "smooth" });
@@ -39,8 +39,8 @@ export default function ChatArea() {
       <Navbar />
 
       {messages.length === 0 ? (
-        <div className="hero absolute max-[420px]:top-[27vh] top-[10vw] left-[17%]">
-          <h1 className="text-[17vw] bg-gradient-to-b from-white to-zinc-900 bg-clip-text text-transparent">
+        <div className="hero absolute max-[420px]:top-[20vh] max-[420px]:left-7 top-[10vw] left-[17%]">
+          <h1 className="text-[17vw] max-[420px]:text-[11vh] bg-gradient-to-b from-white to-zinc-900 bg-clip-text text-transparent">
             Neura AI
           </h1>
         </div>
@@ -60,11 +60,7 @@ export default function ChatArea() {
               key={i}
               className={`
                 my-2 px-4 py-2 rounded-md shadow-md
-                ${
-                  data.role === "user"
-                    ? "bg-white text-black self-end"
-                    : "text-white self-start"
-                }
+                ${data.role === "user" ? "bg-white text-black self-end" : "text-white self-start"}
                 max-w-[70%]
                 max-[480px]:max-w-[90%]
               `}
@@ -87,19 +83,16 @@ export default function ChatArea() {
             </div>
           )}
 
-          {/* Dummy div to scroll into view */}
+          {/* Invisible div to scroll to */}
           <div ref={chatEndRef} />
         </div>
       )}
 
+      {/* Input area */}
       <div
         className={`
           p-4 w-[55%] fixed 
-          ${
-            messages.length === 0
-              ? "top-[26vw] left-[23vw]"
-              : "bottom-0 left-[25%]"
-          }
+          ${messages.length === 0 ? "top-[26vw] left-[23vw] max-[420px]:top-70" : "bottom-0 left-[25%]"}
           h-[13vh] flex items-center gap-2 z-10
           max-[670px]:w-[80vw] max-[670px]:left-[10vw]
           max-[420px]:w-[100vw] max-[420px]:left-0 max-[420px]:bottom-0 max-[420px]:h-[10vh] max-[420px]:p-3
@@ -111,7 +104,6 @@ export default function ChatArea() {
           onChange={(e) => setPrompt(e.target.value)}
           placeholder="Type your message..."
           className="
-          input
             bg-white/5 h-full text-white w-full p-3 rounded-lg backdrop-blur-[15px] 
             border-white/10 placeholder:text-white/50 outline-0
             max-[420px]:text-[12px]

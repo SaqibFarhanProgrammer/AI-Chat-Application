@@ -29,8 +29,8 @@ function Chatboxes() {
         max-[420px]:ml-10
         max-[420px]:h-[40vh]
         max-[420px]:mb-20
-          mr-10
-        max-[420px]:overflow-hidden
+        max-[420px]:mr-10
+          max-[420px]:overflow-hidden
         sm:flex-row sm:justify-between 
       "
     >
@@ -39,7 +39,7 @@ function Chatboxes() {
           key={i}
           className="
             flex flex-col justify-between
-            bg-black text-white 
+            bg-zinc-950 text-white 
             p-4 rounded-xl border border-white/10
             transition-all duration-300 hover:bg-zinc-800
             cursor-pointer

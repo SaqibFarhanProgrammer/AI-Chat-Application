@@ -43,8 +43,13 @@ export default function Sidebar() {
         </div>
 
         {/* New Chat Button */}
-        {open ? (
-          <button className="m-4 px-4 py-2 rounded-md bg-white text-black text-xs font-medium hover:scale-[1.03] transition">
+        {open ? ( 
+          <button
+            onClick={() => {
+              window.location.reload();
+            }}
+            className="m-4 px-4 py-2 rounded-md bg-white text-black text-xs font-medium hover:scale-[1.03] transition"
+          >
             + New Chat
           </button>
         ) : (

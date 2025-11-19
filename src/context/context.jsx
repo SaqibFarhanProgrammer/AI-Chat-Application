@@ -83,6 +83,10 @@ Now, here is my question:
     setPrompt(question);
   }
 
+  function prepromptinchat(question) {
+    setPrompt(question);
+  }
+
 
 
   const value = {
@@ -100,6 +104,7 @@ Now, here is my question:
     newchat,
     setnewchat,
     handlechatquestionssend,
+    prepromptinchat,
   };
 
   return <context.Provider value={value}>{children}</context.Provider>;

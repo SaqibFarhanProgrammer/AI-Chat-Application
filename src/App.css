@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
 @font-face {
   src: url(./assets/fonts/Wake\ Me\ Up.jfif);
   font-family: "a";
@@ -22,11 +25,31 @@ body{
 }
 
 .text {
-  font-family: "a";
+  font-family: "Inter", sans-serif;
   letter-spacing: -11px;
 }
 .text2 {
   font-family: "a";
+}
+
+.chatbox{
+  font-family: "Inter", sans-serif;
+  font-weight: 300;
+  
+}
+
+.sidebar{
+  font-family: "Inter", sans-serif;
+
+}
+
+.navbar{
+  font-family: "Inter", sans-serif;
+}
+
+.chattext{
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
 }
 
 .icon {

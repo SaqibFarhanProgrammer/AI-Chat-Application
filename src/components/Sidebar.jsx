@@ -4,7 +4,7 @@ import { FiMenu, FiX, FiSettings } from "react-icons/fi";
 
 export default function Sidebar() {
   const [open, setOpen] = useState(false);
-  const { previousPrompts } = useContext(context);
+  const { previousPrompts ,prepromptinchat } = useContext(context);
 
   return (
     <>
@@ -23,7 +23,7 @@ export default function Sidebar() {
 
       {/* SIDEBAR */}
       <div
-        className={`fixed top-0 h-screen w-[14rem] max-[640px]:w-[4.2rem]
+        className={`sidebar fixed top-0 h-screen w-[14rem] max-[640px]:w-[4.2rem]
         bg-black/40 backdrop-blur-xl text-white border-r border-white/10
         flex flex-col transition-all duration-300 z-40
         max-[420px]:w-[50vw]
@@ -63,6 +63,7 @@ export default function Sidebar() {
           {open &&
             previousPrompts.map((item, index) => (
               <div
+              onClick={()=>prepromptinchat(item)}
                 key={index}
                 className="p-3 text-[12px] rounded-md    cursor-pointer transition"
               >

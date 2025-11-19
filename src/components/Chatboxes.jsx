@@ -48,7 +48,7 @@ function Chatboxes() {
             sm:flex-1 sm:h-[14vh]
           "
         >
-          <h1 className="text-sm sm:text-base leading-tight">{chat}</h1>
+          <h1 className="text-sm chatbox sm:text-base leading-tight">{chat}</h1>
 
           <button
             onClick={() => handlechatquestionssend(chat)}

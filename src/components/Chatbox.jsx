@@ -48,7 +48,7 @@ export default function ChatArea() {
 
     max-[480px]:p-4
     max-[480px]:mr-0
-    max-[480px]:mb-24
+    max-[480px]:mb-27
   "
         >
           {messages.map((data, i) => (
@@ -72,7 +72,7 @@ export default function ChatArea() {
 
               <p
                 className="text-sm"
-                dangerouslySetInnerHTML={{ __html: data.text.split(" ") }}
+                dangerouslySetInnerHTML={{ __html: data.text }}
               />
             </div>
           ))}

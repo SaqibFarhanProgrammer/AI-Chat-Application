@@ -2,11 +2,12 @@ import React from "react";
 
 function Navbar() {
   return (
-    <div className="w-[80%] flex items-center justify-between mx-auto px-4 py-3 border-b border-white/10 max-w-[100vw] mx-auto">
-      <h1 className="text-lg sm:text-xl font-semibold tracking-wide">
+    <div className="w-[100%] 
+    
+    flex items-center  mx-auto px-4 py-3 border-b border-white/10 max-w-[100vw] justify-end">
+      <h1 className="text-lg sm:text-xl pt-0.5 font-semibold tracking-wide">
         Neura AI
       </h1>
-      <span className="text-xs sm:text-sm text-white/50">v1.0</span>
     </div>
   );
 }

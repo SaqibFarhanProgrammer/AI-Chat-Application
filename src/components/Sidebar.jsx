@@ -1,16 +1,22 @@
-import React, { useState } from "react";
+import { context } from "../context/context";
+import React, { useContext, useState } from "react";
 import { FiMenu, FiX, FiSettings } from "react-icons/fi";
 
 export default function Sidebar() {
   const [open, setOpen] = useState(false);
-  const prevprompts = [1, 2, 3];
+  const { previousPrompts } = useContext(context);
 
   return (
     <>
       {/* FIXED TOGGLE BUTTON */}
       <button
         onClick={() => setOpen(!open)}
-        className="fixed top-4 left-4 z-50 text-white text-3xl p-2 rounded-md bg-black/40 backdrop-blur-xl hover:bg-black/60 transition"
+        className="fixed top-4 *:
+        left-4  *:
+        max-[420px]:left-1
+        max-[420px]:top-1
+         
+        z-50 text-white text-3xl p-2 rounded-md bg-black/40 backdrop-blur-xl hover:bg-black/60 transition"
       >
         {open ? <FiX /> : <FiMenu />}
       </button>
@@ -20,6 +26,8 @@ export default function Sidebar() {
         className={`fixed top-0 h-screen w-[14rem] max-[640px]:w-[4.2rem]
         bg-black/40 backdrop-blur-xl text-white border-r border-white/10
         flex flex-col transition-all duration-300 z-40
+        max-[420px]:w-[50vw]
+
         ${open ? "left-0" : "-left-full"}
       `}
       >
@@ -48,7 +56,7 @@ export default function Sidebar() {
         {/* PREVIOUS PROMPTS */}
         <div className="flex-1 overflow-y-auto px-4 space-y-2 mt-2">
           {open &&
-            prevprompts.map((item, index) => (
+            previousPrompts.map((item, index) => (
               <div
                 key={index}
                 className="p-3 text-[12px] rounded-md    cursor-pointer transition"

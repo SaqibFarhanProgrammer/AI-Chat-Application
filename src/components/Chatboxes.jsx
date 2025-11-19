@@ -29,9 +29,8 @@ function Chatboxes() {
         max-[420px]:ml-10
         max-[420px]:h-[40vh]
         max-[420px]:mb-20
-          
+          mr-10
         max-[420px]:overflow-hidden
-        ml-34
         sm:flex-row sm:justify-between 
       "
     >

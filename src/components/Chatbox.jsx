@@ -4,6 +4,7 @@ import { Send } from "lucide-react";
 import "../App.css";
 import { context } from "../context/context";
 import Chatboxes from "./Chatboxes";
+import Navbar from "./Navbar";
 
 export default function ChatArea() {
   const { prompt, setPrompt, getResponse, setPreviousPrompts } =
@@ -24,19 +25,13 @@ export default function ChatArea() {
   }
 
   return (
-    <div className="flex 
+    <div
+      className="flex 
         max-[420px]:overflow-hidden
-    
-    justify-between items-center flex-col h-screen w-[90vw] text-white z-10 ">
-      <div className="w-full max-[420px]:ml-10 px-4 py-3   border-white/10 flex items-center justify-between">
-        <h1 className="text-lg font-semibold tracking-wide max-[420px]:text-base">
-          Neura AI
-        </h1>
-
-        <span className="text-[10px] text-white/50 max-[420px]:text-[9px]">
-          v1.0
-        </span>
-      </div>
+      
+    justify-between items-center flex-col h-screen w-[100vw] text-white z-10 "
+    >
+      <Navbar />
 
       {messages.length === 0 ? (
         <div className="hero absolute max-[420px]:top-[27vh]  max-[670px]:top-[41vw] max-[895px]:top-[21vw] max-[1090px]:top-[20vh] top-[10vw] left-[17%]">
@@ -77,7 +72,7 @@ export default function ChatArea() {
 
               <p
                 className="text-sm"
-                dangerouslySetInnerHTML={{ __html: data.text }}
+                dangerouslySetInnerHTML={{ __html: data.text.split(" ") }}
               />
             </div>
           ))}

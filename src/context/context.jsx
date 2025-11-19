@@ -73,7 +73,7 @@ Now, here is my question:
       return htmlFormatted;
     } catch (error) {
       console.error("AI Error:", error);
-      return "The model is overloaded. Please try again later.";
+        return "The model is overloaded. Please try again later.";
     } finally {
       setLoading(false);
     }
@@ -83,9 +83,6 @@ Now, here is my question:
     setPrompt(question);
   }
 
-  useEffect(() => {
-    localStorage.setItem("recentChats", previousPrompts);
-  }, [previousPrompts]);
 
   const value = {
     prompt,

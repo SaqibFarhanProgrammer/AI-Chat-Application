@@ -111,6 +111,7 @@ export default function ChatArea() {
           onChange={(e) => setPrompt(e.target.value)}
           placeholder="Type your message..."
           className="
+          input
             bg-white/5 h-full text-white w-full p-3 rounded-lg backdrop-blur-[15px] 
             border-white/10 placeholder:text-white/50 outline-0
             max-[420px]:text-[12px]

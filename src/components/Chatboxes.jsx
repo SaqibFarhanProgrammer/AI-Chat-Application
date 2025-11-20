@@ -49,7 +49,7 @@ function Chatboxes() {
     shadow-sm hover:shadow-md
   "
         >
-          <h1 className="text-sm sm:text-base font-medium leading-normal">
+          <h1 className="text-sm chatboxtext sm:text-base font-medium leading-normal">
             {chat}
           </h1>
 

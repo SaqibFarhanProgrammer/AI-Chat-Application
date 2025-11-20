@@ -8,7 +8,6 @@ export default function Sidebar() {
 
   return (
     <>
-      {/* FIXED TOGGLE BUTTON */}
       <button
         onClick={() => setOpen(!open)}
         className="fixed top-4 *:

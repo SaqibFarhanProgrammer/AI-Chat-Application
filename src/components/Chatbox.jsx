@@ -24,7 +24,6 @@ export default function ChatArea() {
   async function handleSend(promptText) {
     if (!promptText.trim()) return;
 
-    setPreviousPrompts((prev) => [...prev, promptText]);
     setPrompt("");
     setMessages((prev) => [...prev, { role: "user", text: promptText }]);
     setLoading(true);

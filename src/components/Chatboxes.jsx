@@ -38,24 +38,32 @@ function Chatboxes() {
         <div
           key={i}
           className="
-            flex flex-col justify-between
-            bg-zinc-950 text-white 
-            p-4 rounded-xl border border-white/10
-            transition-all duration-300 hover:bg-zinc-800
-            cursor-pointer
-            h-[12vh]
-            w-full
-            sm:flex-1 sm:h-[14vh]
-          "
+    flex flex-col
+    bg-zinc-950 text-white
+    p-4 rounded-xl border border-white/10
+    transition-all duration-300
+    hover:bg-zinc-900
+    cursor-pointer
+    min-h-[14vh] w-full
+    sm:flex-1 sm:min-h-[16vh]
+    shadow-sm hover:shadow-md
+  "
         >
-          <h1 className="text-sm chatbox sm:text-base leading-tight">{chat}</h1>
+          <h1 className="text-sm sm:text-base font-medium leading-normal">
+            {chat}
+          </h1>
 
           <button
             onClick={() => handlechatquestionssend(chat)}
             className="
-              text-xs sm:text-sm 
-              px-3 py-1 mt-2 self-start
-            "
+      text-xs sm:text-sm
+      px-3 py-1 mt-4 w-fit
+      rounded-md
+      bg-white/10
+      hover:bg-white/20
+      backdrop-blur-sm
+      transition-all duration-200
+    "
           >
             Add
           </button>

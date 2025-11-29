@@ -14,7 +14,6 @@ export default function ChatArea() {
 
   const chatEndRef = useRef(null);
 
-  // Auto-scroll to the last message whenever messages change
   useEffect(() => {
     if (chatEndRef.current) {
       chatEndRef.current.scrollIntoView({ behavior: "smooth" });
@@ -46,33 +45,38 @@ export default function ChatArea() {
       ) : (
         <div
           className="
-            chatarea p-20 flex flex-col gap-5 mr-5 
-            overflow-y-auto overflow-x-hidden mb-20  
-            h-[100vh] w-full
+          chatarea p-20 flex flex-col gap-5 mr-5 
+          overflow-y-auto overflow-x-hidden mb-20  
+          h-[100vh] w-full
+            px-50  
             max-[480px]:p-4
+            max-[480px]:px-4
             max-[480px]:mr-0
             max-[480px]:mb-24
-          "
-        >
+            "
+            >
           {messages.map((data, i) => (
             <div
-              key={i}
-              className={`
-                my-2 px-4 py-2 rounded-md shadow-md
-                ${data.role === "user" ? "bg-white text-black self-end" : "text-white self-start"}
+            key={i}
+            className={`
+              my-2 px-4 py-2 rounded-md shadow-md
+              ${
+                data.role === "user"
+                ? "bg-white text-black self-end"
+                : "text-white self-start"
+                }
                 max-w-[70%]
                 max-[480px]:max-w-[90%]
-              `}
+                `}
             >
               <p className="text-xs opacity-70 mb-1">
                 {data.role === "user" ? "" : "AI"}
               </p>
-
               <p
                 className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-[18px]"
                 dangerouslySetInnerHTML={{ __html: data.text }}
-              />
-            </div>
+                />
+                </div>
           ))}
 
           {loading && (
@@ -91,7 +95,11 @@ export default function ChatArea() {
       <div
         className={`
           p-4 w-[55%] fixed 
-          ${messages.length === 0 ? "top-[26vw] left-[23vw] max-[420px]:top-70" : "bottom-0 left-[25%]"}
+          ${
+            messages.length === 0
+              ? "top-[26vw] left-[23vw] max-[420px]:top-70"
+              : "bottom-0 left-[25%]"
+          }
           h-[13vh] flex items-center gap-2 z-10
           max-[670px]:w-[80vw] max-[670px]:left-[10vw]
           max-[420px]:w-[100vw] max-[420px]:left-0 max-[420px]:bottom-0 max-[420px]:h-[10vh] max-[420px]:p-3

@@ -12,7 +12,8 @@ export function AIProvider({ children }) {
   const [send, setSend] = useState(false);
   const [newchat, setnewchat] = useState(true);
 
-  // ----------- SIMPLE FORMATTER (no library, no markdown parser) -------------
+  const prevpromptmessage = previousPrompts.join(" ");
+
   function formatAI(text) {
     let t = text;
 
@@ -32,7 +33,6 @@ export function AIProvider({ children }) {
     // wrap final output
     return `<div>${t}</div>`;
   }
-  // --------------------------------------------------------------------------
 
   async function getResponse(promptText) {
     try {
@@ -60,11 +60,13 @@ A: Why did the JavaScript developer go broke? Because he kept using 'try' but ne
 
 Now, here is my question: 
 [Insert your question here]
-` + promptText
+Previous questions and answers: ${prevpromptmessage}
+Current question: ${promptText}
+Provide a detailed and informative answer.`
       );
       const rawText = result.response.text();
 
-      const htmlFormatted = formatAI(rawText);
+      const htmlFormatted = formatAI(rawText);ter
 
       setAiResponse(htmlFormatted);
 
@@ -73,7 +75,7 @@ Now, here is my question:
       return htmlFormatted;
     } catch (error) {
       console.error("AI Error:", error);
-        return "The model is overloaded. Please try again later.";
+      return "The model is overloaded. Please try again later.";
     } finally {
       setLoading(false);
     }
@@ -86,8 +88,6 @@ Now, here is my question:
   function prepromptinchat(question) {
     setPrompt(question);
   }
-
-
 
   const value = {
     prompt,

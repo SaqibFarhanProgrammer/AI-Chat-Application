@@ -43,9 +43,9 @@ export function AIProvider({ children }) {
 
       const result = await model.generateContent(
         `You are an expert AI assistant. Answer any question I ask with the best possible answer. 
-Before answering, consider these example questions and answers:
+         Before answering, consider these example questions and answers:
 
-Example 1:
+   Example 1:
 Q: What is the capital of Pakistan?
 A: The capital of Pakistan is Islamabad.
 
@@ -66,7 +66,8 @@ Provide a detailed and informative answer.`
       );
       const rawText = result.response.text();
 
-      const htmlFormatted = formatAI(rawText);ter
+      const htmlFormatted = formatAI(rawText);
+      ter;
 
       setAiResponse(htmlFormatted);
 

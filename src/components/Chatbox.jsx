@@ -5,10 +5,13 @@ import "../App.css";
 import { context } from "../context/context";
 import Chatboxes from "./Chatboxes";
 import Navbar from "./Navbar";
+import pdfToText from "react-pdftotext";
+import { GoPlus } from "react-icons/go";
+
+
 
 export default function ChatArea() {
-  const { prompt, setPrompt, getResponse, setPreviousPrompts } =
-    useContext(context);
+  const { prompt, setPrompt, getResponse } = useContext(context);
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -30,6 +33,16 @@ export default function ChatArea() {
     const aiRes = await getResponse(promptText);
     setMessages((prev) => [...prev, { role: "ai", text: aiRes }]);
     setLoading(false);
+  }
+
+  async function handlePdf(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    const text = await pdfToText(file);
+    console.log(text);
+
+    handleSend(`Extracted text from PDF:\n${text}`);
+
   }
 
   return (
@@ -54,16 +67,15 @@ export default function ChatArea() {
             max-[480px]:mr-0
             max-[480px]:mb-24
             "
-            >
+        >
           {messages.map((data, i) => (
             <div
-            key={i}
-            className={`
+              key={i}
+              className={`
               my-2 px-4 py-2 rounded-md shadow-md
-              ${
-                data.role === "user"
-                ? "bg-white text-black self-end"
-                : "text-white self-start"
+              ${data.role === "user"
+                  ? "bg-white text-black self-end"
+                  : "text-white self-start"
                 }
                 max-w-[70%]
                 max-[480px]:max-w-[90%]
@@ -75,8 +87,8 @@ export default function ChatArea() {
               <p
                 className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-[18px]"
                 dangerouslySetInnerHTML={{ __html: data.text }}
-                />
-                </div>
+              />
+            </div>
           ))}
 
           {loading && (
@@ -95,10 +107,9 @@ export default function ChatArea() {
       <div
         className={`
           p-4 w-[55%] fixed 
-          ${
-            messages.length === 0
-              ? "top-[26vw] left-[23vw] max-[420px]:top-70"
-              : "bottom-0 left-[25%]"
+          ${messages.length === 0
+            ? "top-[26vw] left-[23vw] max-[420px]:top-70"
+            : "bottom-0 left-[25%]"
           }
           h-[13vh] flex items-center gap-2 z-10
           max-[670px]:w-[80vw] max-[670px]:left-[10vw]
@@ -116,15 +127,26 @@ export default function ChatArea() {
             max-[420px]:text-[12px]
           "
         />
+        <label className="absolute right-18   rounded-lg p-2 cursor-pointer  flex items-center justify-center">
+          <GoPlus className="text-3xl text-gray-100" />
+          <input
+            type="file"
+            accept=".pdf"
+            onChange={handlePdf}
+            className="hidden"
+          />
+        </label>
+
 
         <Button
+          disabled={prompt === ""}
           size="icon"
           onClick={() => handleSend(prompt)}
-          className="
-            absolute bottom-[33px] right-9 bg-white text-black hover:bg-white/90 transition
+          className={`
+            absolute bottom-[33px] right-9 ${prompt === "" ? "bg-zinc-100" : "bg-white"} text-black hover:bg-white/90 transition
             max-[420px]:right-6
             max-[420px]:bottom-6
-          "
+          `}
         >
           <Send className="w-4 h-4" />
         </Button>

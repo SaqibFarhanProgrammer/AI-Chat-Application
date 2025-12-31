@@ -1,16 +1,17 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
 @font-face {
   src: url(./assets/fonts/Wake\ Me\ Up.jfif);
   font-family: "a";
 }
 
-
-body{
+body {
   overflow: hidden;
 }
 
+textarea::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
 /* Chat container */
 .chat-window {
   width: 100vw;
@@ -32,31 +33,28 @@ body{
   font-family: "a";
 }
 
-.chatbox{
+.chatbox {
   font-family: "Inter", sans-serif;
   font-weight: 300;
-  
 }
 
-.sidebar{
-  font-family: "Inter", sans-serif;
-
-}
-
-.navbar{
+.sidebar {
   font-family: "Inter", sans-serif;
 }
 
-.chatboxtext{
+.navbar {
+  font-family: "Inter", sans-serif;
+}
+
+.chatboxtext {
   font-family: "Inter", sans-serif;
   font-weight: 400;
 }
 
-
-  .input{
-    font-family: "Inter", sans-serif;
-    font-weight: 300;
-  }
+.input {
+  font-family: "Inter", sans-serif;
+  font-weight: 300;
+}
 .icon {
   filter: invert(1);
 }
@@ -172,7 +170,6 @@ body{
     black
   );
 }
-
 
 .shiny-text {
   color: #b5b5b5a4; /* base text color */

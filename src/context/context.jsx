@@ -67,7 +67,6 @@ Provide a detailed and informative answer.`
       const rawText = result.response.text();
 
       const htmlFormatted = formatAI(rawText);
-      ter;
 
       setAiResponse(htmlFormatted);
 

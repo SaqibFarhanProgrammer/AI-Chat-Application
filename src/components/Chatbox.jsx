@@ -102,45 +102,54 @@ export default function ChatArea() {
       )}
 
       {/* Input area */}
- <div
-  className={`
+      <div
+        className={`
     fixed p-4 w-[55%] h-[13vh] flex items-center gap-2 z-10
     ${messages.length === 0 ? "top-[26vw] left-[23vw]" : "bottom-0 left-[25%]"}
     max-[670px]:w-[80vw] max-[670px]:left-[10vw]
     max-[420px]:top-[33%]
     max-[420px]:w-full max-[420px]:left-0 max-[420px]:bottom-0 max-[420px]:h-[10vh] max-[420px]:p-3
   `}
->
-  <textarea
-    onKeyDown={(e) => e.key === "Enter" && handleSend(prompt)}
-    value={prompt}
-    onChange={(e) => setPrompt(e.target.value)}
-    placeholder="Type your message..."
-    className=" 
+      >
+        <textarea
+          onKeyDown={(e) => e.key === "Enter" && handleSend(prompt)}
+          value={prompt}
+          onChange={(e) => setPrompt(e.target.value)}
+          placeholder="Type your message..."
+          className=" 
       bg-white/5 h-full w-full p-3 rounded-lg backdrop-blur-[15px] 
       border border-white/10 text-white placeholder:text-white/50 outline-none
       max-[420px]:text-[12px]
     "
-  />
+        />
 
-  <label className="absolute right-20 p-2 cursor-pointer flex items-center justify-center rounded-lg">
-    <GoPlus className="text-3xl text-gray-100" />
-    <input type="file" accept=".pdf" onChange={handlePdf} className="hidden" />
-  </label>
+        <label className="absolute right-20 p-2 cursor-pointer flex items-center justify-center rounded-lg">
+          <GoPlus className="text-3xl text-gray-100" />
+          <input
+            type="file"
+            accept=".pdf"
+            onChange={handlePdf}
+            className="hidden"
+          />
+        </label>
 
-  <Button
-    disabled={!prompt}
-    size="icon"
-    onClick={() => handleSend(prompt)}
-    className={`
+        <Button
+          disabled={!prompt}
+          size="icon"
+          onClick={() => handleSend(prompt)}
+          className={`
       absolute bottom-[33px] right-9 transition
-      ${prompt ? "bg-white text-black hover:bg-white/90" : "bg-zinc-100 text-black"}
+      ${
+        prompt
+          ? "bg-white text-black hover:bg-white/90"
+          : "bg-zinc-100 text-black"
+      }
       max-[420px]:right-6 max-[420px]:bottom-6
     `}
-  >
-    <Send className="w-4 h-4" />
-  </Button>
-</div>
+        >
+          <Send className="w-4 h-4" />
+        </Button>
+      </div>
 
       {messages.length === 0 ? <Chatboxes /> : null}
     </div>

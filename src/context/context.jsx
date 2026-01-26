@@ -41,32 +41,10 @@ export function AIProvider({ children }) {
       const genAI = new GoogleGenerativeAI(import.meta.env.VITE_API_KEY);
       const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
-      const result = await model.generateContent(
-        `You are an expert AI assistant. Answer any question I ask with the best possible answer. 
-         Before answering, consider these example questions and answers:
-
-   Example 1:
-Q: What is the capital of Pakistan?
-A: The capital of Pakistan is Islamabad.
-
-Example 2:
-Q: How do I make a React button?
-A: In React, you can create a button using:
-   <button onClick={handleClick}>Click Me</button>
-
-Example 3:
-Q: Tell me a fun joke.
-A: Why did the JavaScript developer go broke? Because he kept using 'try' but never 'catch'.
-
-Now, here is my question: 
-[Insert your question here]
-Previous questions and answers: ${prevpromptmessage}
-Current question: ${promptText}
-Provide a detailed and informative answer.`
-      );
+      const result = await model.generateContent(promptText);
       const rawText = result.response.text();
 
-      const htmlFormatted = formatAI(rawText);
+      const htchamlFormatted = formatAI(rawText);
 
       setAiResponse(htmlFormatted);
 

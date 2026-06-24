@@ -1,7 +1,6 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-// eslint-disable-next-line react-refresh/only-export-components
 export const context = createContext();
 
 export function AIProvider({ children }) {
@@ -12,8 +11,6 @@ export function AIProvider({ children }) {
   const [send, setSend] = useState(false);
   const [newchat, setnewchat] = useState(true);
 
-  const prevpromptmessage = previousPrompts.join(" ");
-
   function formatAI(text) {
     let t = text;
 
@@ -22,16 +19,22 @@ export function AIProvider({ children }) {
     t = t.replace(/</g, "&lt;");
     t = t.replace(/>/g, "&gt;");
 
-    // basic formatting
+    // bold
     t = t.replace(/\*\*(.*?)\*\*/g, "<b>$1</b>");
+    // italic
     t = t.replace(/\*(.*?)\*/g, "<i>$1</i>");
+    // remove stray asterisks
     t = t.replace(/\*/g, "");
+
+    // code blocks (```...```)
+    t = t.replace(/```([\s\S]*?)```/g, '<pre class="code-block"><code>$1</code></pre>');
+    // inline code (`...`)
+    t = t.replace(/`([^`]+)`/g, '<code class="inline-code">$1</code>');
 
     // line breaks
     t = t.replace(/\n/g, "<br/>");
 
-    // wrap final output
-    return `<div>${t}</div>`;
+    return `<div class="ai-message">${t}</div>`;
   }
 
   async function getResponse(promptText) {
@@ -44,10 +47,9 @@ export function AIProvider({ children }) {
       const result = await model.generateContent(promptText);
       const rawText = result.response.text();
 
-      const htchamlFormatted = formatAI(rawText);
+      const htmlFormatted = formatAI(rawText);
 
       setAiResponse(htmlFormatted);
-
       setPreviousPrompts((prev) => [...prev, promptText]);
 
       return htmlFormatted;
